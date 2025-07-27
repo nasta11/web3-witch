@@ -4,10 +4,52 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web3 Witch</title>
+  <style>
+    body {
+      background-color: #0b0014;
+      color: #e6caff;
+      font-family: 'Georgia', serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+    button {
+      background-color: #6a00ff;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .card {
+      margin-top: 40px;
+      font-size: 22px;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-  <h1>Добро пожаловать в Web3 Witch 🔮</h1>
-  <p>Сайт работает! Скоро здесь появится магия...</p>
+  <h1>✨ Web3 Witch ✨</h1>
+  <p>Вытяни свою карту судьбы</p>
+  <button onclick="drawCard()">Вытянуть карту</button>
+  <div class="card" id="card"></div>
+
+  <script>
+    const cards = [
+      "🌑 The Void — Начни с пустоты",
+      "🔥 The Flame — Действуй решительно",
+      "🌊 The Flow — Плыви по течению",
+      "🌟 The Star — Всё возможно",
+      "🧙‍♀️ The Witch — Ты сама творец магии"
+    ];
+
+    function drawCard() {
+      const randomIndex = Math.floor(Math.random() * cards.length);
+      document.getElementById('card').innerText = cards[randomIndex];
+    }
+  </script>
 </body>
 </html>
+
 
