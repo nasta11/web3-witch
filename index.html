@@ -6,88 +6,83 @@
   <title>Web3 Witch</title>
   <style>
     body {
-      background: radial-gradient(ellipse at center, #1a002f 0%, #0b0014 100%);
+      background: radial-gradient(circle at center, #14001f, #0b0014);
       color: #e6caff;
       font-family: 'Georgia', serif;
       text-align: center;
-      padding-top: 80px;
+      padding-top: 100px;
     }
-
     h1 {
-      font-size: 36px;
-      color: #dcb5ff;
-      text-shadow: 0 0 8px #a64eff;
+      font-size: 2.5em;
+      color: #d6aaff;
+      text-shadow: 0 0 10px #a84bff;
     }
-
     button {
-      background-color: #9d4edd;
+      background-color: #a84bff;
       color: white;
       border: none;
-      padding: 15px 30px;
+      padding: 15px 25px;
       font-size: 18px;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      box-shadow: 0 0 10px #6a00ff;
-      transition: transform 0.2s;
+      box-shadow: 0 0 15px #a84bff;
     }
-
     button:hover {
-      transform: scale(1.05);
+      background-color: #c06dff;
     }
-
     img {
-      margin-top: 40px;
+      margin-top: 30px;
       width: 300px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      height: auto;
+      box-shadow: 0 0 20px #e6caff;
       border-radius: 12px;
     }
-
     #card-name {
-      margin-top: 30px;
-      font-size: 24px;
-      color: #f8dfff;
+      margin-top: 40px;
+      font-size: 1.8em;
+      color: #ffd1ff;
+      text-shadow: 0 0 6px #ff80ff;
     }
   </style>
 </head>
 <body>
-  <h1>🔮 Witch the Web3 Way? 🔮</h1>
+  <h1>🔮 Witch the Web3 Way?</h1>
   <p>Вытяни свою карту судьбы</p>
-  <button id="draw-button">Вытянуть карту</button>
-
+  <button onclick="drawCard()">Вытянуть карту</button>
   <h2 id="card-name"></h2>
   <img id="card-image" src="" alt="" />
 
   <script>
     const cards = [
-      { name: "The Initiate", file: "the_initiate.jpg" },
-      { name: "The Fracture", file: "the_fracture.jpg" },
-      { name: "The Guardian", file: "the_guardian.jpg" },
-      { name: "The Weaver", file: "the_weaver.jpg" },
-      { name: "The Mirror", file: "the_mirror.jpg" },
-      { name: "The Gate", file: "the_gate.jpg" },
-      { name: "The Virus", file: "the_virus.jpg" },
-      { name: "The Flame", file: "the_flame.jpg" },
-      { name: "The Pulse", file: "the_pulse.jpg" },
-      { name: "The Oracle", file: "the_oracle.jpg" },
-      { name: "The Machine", file: "the_machine.jpg" },
-      { name: "The Dreamer", file: "the_dreamer.jpg" },
-      { name: "Pure Code", file: "pure_code.jpg" },
-      { name: "The Void", file: "the_void.jpg" },
-      { name: "The Hacker", file: "the_hacker.jpg" },
-      { name: "The Moonlight", file: "the_moonlight.jpg" },
-      { name: "The Child", file: "the_child.jpg" },
-      { name: "The Empress", file: "the_empress.jpg" },
-      { name: "The Shadow", file: "the_shadow.jpg" },
-      { name: "The Connection", file: "the_connection.jpg" },
-      { name: "The Crown", file: "the_crown.jpg" }
+      { name: "The Initiate", image: "cards/the_initiate.jpg" },
+      { name: "The Fracture", image: "cards/the_fracture.jpg" },
+      { name: "The Weaver", image: "cards/the_weaver.jpg" },
+      { name: "The Mirror", image: "cards/the_mirror.jpg" },
+      { name: "The Gate", image: "cards/the_gate.jpg" },
+      { name: "The Virus", image: "cards/the_virus.jpg" },
+      { name: "The Flame", image: "cards/the_flame.jpg" },
+      { name: "The Pulse", image: "cards/the_pulse.jpg" },
+      { name: "The Oracle", image: "cards/the_oracle.jpg" },
+      { name: "The Machine", image: "cards/the_machine.jpg" },
+      { name: "The Dreamer", image: "cards/the_dreamer.jpg" },
+      { name: "Pure Code", image: "cards/pure_code.jpg" },
+      { name: "The Void", image: "cards/the_void.jpg" },
+      { name: "The Hacker", image: "cards/the_hacker.jpg" },
+      { name: "The Moonlight", image: "cards/the_moonlight.jpg" },
+      { name: "The Child", image: "cards/the_child.jpg" },
+      { name: "The Empress", image: "cards/the_empress.jpg" },
+      { name: "The Shadow", image: "cards/the_shadow.jpg" },
+      { name: "The Connection", image: "cards/the_connection.jpg" },
+      { name: "The Guardian", image: "cards/the_guardian.jpg" },
+      { name: "The Crown", image: "cards/the_crown.jpg" }
     ];
 
-    document.getElementById("draw-button").addEventListener("click", () => {
-      const index = Math.floor(Math.random() * cards.length);
-      const card = cards[index];
-      document.getElementById("card-name").textContent = `✨ ${card.name} ✨`;
-      document.getElementById("card-image").src = `cards/${card.file}`;
-    });
+    function drawCard() {
+      const card = cards[Math.floor(Math.random() * cards.length)];
+      document.getElementById("card-name").innerText = `✨ ${card.name} ✨`;
+      document.getElementById("card-image").src = card.image;
+      document.getElementById("card-image").alt = card.name;
+    }
   </script>
 </body>
 </html>
