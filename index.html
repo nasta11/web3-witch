@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Web3 Witch</title>
   <style>
     body {
@@ -11,6 +11,13 @@
       font-family: 'Georgia', serif;
       text-align: center;
       padding-top: 100px;
+      background-image: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.08), transparent 70%);
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 0.5em;
+      color: #d5b3ff;
+      text-shadow: 0 0 10px #9333ea;
     }
     button {
       background-color: #6a00ff;
@@ -20,36 +27,68 @@
       font-size: 18px;
       border-radius: 8px;
       cursor: pointer;
-      margin-top: 20px;
+      box-shadow: 0 0 15px #6a00ff80;
     }
-    .card {
+    button:hover {
+      background-color: #9333ea;
+    }
+    #result {
       margin-top: 40px;
-      font-size: 22px;
-      font-style: italic;
+    }
+    #result img {
+      max-width: 320px;
+      border-radius: 16px;
+      margin-top: 10px;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+    }
+    #result h2 {
+      margin-top: 20px;
+      color: #ffe7ff;
+      font-weight: normal;
     }
   </style>
 </head>
 <body>
-  <h1>✨ Web3 Witch ✨</h1>
+  <h1>🔮 Witch the Web3 Way?</h1>
   <p>Вытяни свою карту судьбы</p>
   <button onclick="drawCard()">Вытянуть карту</button>
-  <div class="card" id="card"></div>
+
+  <div id="result"></div>
 
   <script>
     const cards = [
-      "🌑 The Void — Начни с пустоты",
-      "🔥 The Flame — Действуй решительно",
-      "🌊 The Flow — Плыви по течению",
-      "🌟 The Star — Всё возможно",
-      "🧙‍♀️ The Witch — Ты сама творец магии"
+      { name: "The Initiate", file: "the_initiate.jpg" },
+      { name: "The Fracture", file: "the_fracture.jpg" },
+      { name: "The Guardian", file: "the_guardian.jpg" },
+      { name: "The Weaver", file: "the_weaver.jpg" },
+      { name: "The Mirror", file: "the_mirror.jpg" },
+      { name: "The Gate", file: "the_gate.jpg" },
+      { name: "The Virus", file: "the_virus.jpg" },
+      { name: "The Flame", file: "the_flame.jpg" },
+      { name: "The Pulse", file: "the_pulse.jpg" },
+      { name: "The Oracle", file: "the_oracle.jpg" },
+      { name: "The Machine", file: "the_machine.jpg" },
+      { name: "The Dreamer", file: "the_dreamer.jpg" },
+      { name: "Pure Code", file: "pure_code.jpg" },
+      { name: "The Void", file: "the_void.jpg" },
+      { name: "The Hacker", file: "the_hacker.jpg" },
+      { name: "The Moonlight", file: "the_moonlight.jpg" },
+      { name: "The Child", file: "the_child.jpg" },
+      { name: "The Empress", file: "the_empress.jpg" },
+      { name: "The Shadow", file: "the_shadow.jpg" },
+      { name: "The Connection", file: "the_connection.jpg" },
+      { name: "The Crown", file: "the_crown.jpg" }
     ];
 
     function drawCard() {
-      const randomIndex = Math.floor(Math.random() * cards.length);
-      document.getElementById('card').innerText = cards[randomIndex];
+      const result = document.getElementById("result");
+      const randomCard = cards[Math.floor(Math.random() * cards.length)];
+      result.innerHTML = `
+        <h2>✨ ${randomCard.name} ✨</h2>
+        <img src="cards/${randomCard.file}" alt="${randomCard.name}" />
+      `;
     }
   </script>
 </body>
 </html>
-
 
