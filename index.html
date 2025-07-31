@@ -2,58 +2,60 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web3 Witch</title>
   <style>
     body {
-      background-color: #0b0014;
+      background: radial-gradient(ellipse at center, #1a002f 0%, #0b0014 100%);
       color: #e6caff;
       font-family: 'Georgia', serif;
       text-align: center;
-      padding-top: 100px;
-      background-image: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.08), transparent 70%);
+      padding-top: 80px;
     }
+
     h1 {
-      font-size: 2em;
-      margin-bottom: 0.5em;
-      color: #d5b3ff;
-      text-shadow: 0 0 10px #9333ea;
+      font-size: 36px;
+      color: #dcb5ff;
+      text-shadow: 0 0 8px #a64eff;
     }
+
     button {
-      background-color: #6a00ff;
+      background-color: #9d4edd;
       color: white;
       border: none;
-      padding: 15px 25px;
+      padding: 15px 30px;
       font-size: 18px;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 0 15px #6a00ff80;
+      box-shadow: 0 0 10px #6a00ff;
+      transition: transform 0.2s;
     }
+
     button:hover {
-      background-color: #9333ea;
+      transform: scale(1.05);
     }
-    #result {
+
+    img {
       margin-top: 40px;
+      width: 300px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
     }
-    #result img {
-      max-width: 320px;
-      border-radius: 16px;
-      margin-top: 10px;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
-    }
-    #result h2 {
-      margin-top: 20px;
-      color: #ffe7ff;
-      font-weight: normal;
+
+    #card-name {
+      margin-top: 30px;
+      font-size: 24px;
+      color: #f8dfff;
     }
   </style>
 </head>
 <body>
-  <h1>🔮 Witch the Web3 Way?</h1>
+  <h1>🔮 Witch the Web3 Way? 🔮</h1>
   <p>Вытяни свою карту судьбы</p>
-  <button onclick="drawCard()">Вытянуть карту</button>
+  <button id="draw-button">Вытянуть карту</button>
 
-  <div id="result"></div>
+  <h2 id="card-name"></h2>
+  <img id="card-image" src="" alt="" />
 
   <script>
     const cards = [
@@ -80,14 +82,12 @@
       { name: "The Crown", file: "the_crown.jpg" }
     ];
 
-    function drawCard() {
-      const result = document.getElementById("result");
-      const randomCard = cards[Math.floor(Math.random() * cards.length)];
-      result.innerHTML = `
-        <h2>✨ ${randomCard.name} ✨</h2>
-        <img src="cards/${randomCard.file}" alt="${randomCard.name}" />
-      `;
-    }
+    document.getElementById("draw-button").addEventListener("click", () => {
+      const index = Math.floor(Math.random() * cards.length);
+      const card = cards[index];
+      document.getElementById("card-name").textContent = `✨ ${card.name} ✨`;
+      document.getElementById("card-image").src = `cards/${card.file}`;
+    });
   </script>
 </body>
 </html>
