@@ -10,73 +10,87 @@
       color: #e6caff;
       font-family: 'Georgia', serif;
       text-align: center;
-      padding-top: 100px;
+      padding-top: 50px;
     }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 40px;
+    }
+
     button {
       background-color: #6a00ff;
       color: white;
       border: none;
-      padding: 15px 25px;
+      padding: 15px 30px;
       font-size: 18px;
-      border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 0 10px #ab84ff;
+      border-radius: 8px;
+      margin-bottom: 30px;
     }
+
+    button:hover {
+      background-color: #8a2be2;
+    }
+
     img {
-      margin-top: 40px;
       max-width: 300px;
-      box-shadow: 0 0 15px #ab84ff;
+      height: auto;
+      margin-top: 20px;
+      border: 2px solid #6a00ff;
       border-radius: 10px;
     }
-    h1 {
-      font-size: 2.5em;
-      color: #ab84ff;
-    }
-    .card-name {
-      font-size: 24px;
-      margin-top: 30px;
+
+    p {
+      margin-top: 20px;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
-  <h1>🔮 Witch the Web3 Way?</h1>
-  <button onclick="drawCard()">Draw your card</button>
 
-  <div class="card-name" id="card-name"></div>
-  <img id="card-image" src="" alt="" />
+  <h1>✨ Web3 Witch ✨</h1>
+
+  <button onclick="drawCard()">Draw your destiny</button>
+
+  <div id="result">
+    <img id="cardImage" src="" alt="" style="display:none;">
+    <p id="cardText"></p>
+  </div>
 
   <script>
     const cards = [
-      { name: "The Moonlight", image: "cards/01_the_moonlight.jpg", message: "Ты в тени, но видишь больше. Follow the intuition." },
-      { name: "The Connection", image: "cards/02_the_connection.jpg", message: "Ты не один. Web connects us all." },
-      { name: "The Gate", image: "cards/03_the_gate.jpg", message: "Открой портал. Step into the unknown." },
-      { name: "The Crown", image: "cards/04_the_crown.jpg", message: "Ты правишь своим кодом. Royal vibes 👑" },
-      { name: "The Mirror", image: "cards/05_the_mirror.jpg", message: "Посмотри вглубь — это ты. Mirror of truth." },
-      { name: "The Hacker", image: "cards/06_the_hacker.jpg", message: "Break the rules. Твоя магия — хакинг реальности." },
-      { name: "The Flame", image: "cards/07_the_flame.jpg", message: "Ты горишь. Don’t burn out 🔥" },
-      { name: "Pure Code", image: "cards/08_pure_code.jpg", message: "Ты чистый код. No bugs, just purpose." },
-      { name: "The Pulse", image: "cards/09_the_pulse.jpg", message: "Ты в ритме. Sync with the Web." },
-      { name: "The Weaver", image: "cards/10_the_weaver.jpg", message: "Ты ткач. Weave your story in the net." },
-      { name: "The Virus", image: "cards/11_the_virus.jpg", message: "Будь осторожен. Not all updates are good." },
-      { name: "The Initiate", image: "cards/12_the_initiate.jpg", message: "Ты начал путь. Trust the first step." },
-      { name: "The Machine", image: "cards/13_the_machine.jpg", message: "Ты — система. Optimize yourself." },
-      { name: "The Fracture", image: "cards/14_the_fracture.jpg", message: "Что-то разбито. But cracks let the light in." },
-      { name: "The Child", image: "cards/15_the_child.jpg", message: "Смотри с любопытством. Wonder is power." },
-      { name: "The Empress", image: "cards/16_the_empress.jpg", message: "Ты создаёшь. Divine feminine flow." },
-      { name: "The Guardian", image: "cards/17_the_guardian.jpg", message: "Ты защищаешь. Firewall of the soul." },
-      { name: "The Void", image: "cards/18_the_void.jpg", message: "Пустота. Embrace the nothingness." },
-      { name: "The Shadow", image: "cards/19_the_shadow.jpg", message: "Ты видишь то, что скрыто. Know thy shadow." },
-      { name: "The Oracle", image: "cards/20_the_oracle.jpg", message: "Ты чувствуешь наперёд. Future speaks to you." },
-      { name: "The Dreamer", image: "cards/21_the_dreamer.jpg", message: "Ты мечтаешь. Turn visions into code." }
+      { filename: "the_moonlight.jpg", text: "Иллюзия или свет? Твой экран знает ответ. ☾" },
+      { filename: "the_connection.jpg", text: "We are nodes in the network — связь сильнее одиночества." },
+      { filename: "the_gate.jpg", text: "The choice is yours. Пройти сквозь — или остаться в тени." },
+      { filename: "the_crown.jpg", text: "Ты апгрейднутый. Now you see the whole pattern." },
+      { filename: "the_mirror.jpg", text: "Кто ты в отражении? Illusion или понимание?" },
+      { filename: "the_hacker.jpg", text: "Сломай правила — перепиши судьбу (recode your reality)." },
+      { filename: "the_flame.jpg", text: "Действуй. Пламя не просит разрешения." },
+      { filename: "pure_code.jpg", text: "Чистота. Красота. Элегантность алгоритма." },
+      { filename: "the_pulse.jpg", text: "Ты код. Ты ритм. You are the signal inside the system." },
+      { filename: "the_weaver.jpg", text: "Судьба ткётся из твоих строчек кода." },
+      { filename: "the_virus.jpg", text: "Взлом — это начало. Out of chaos — creation." },
+      { filename: "the_initiate.jpg", text: "Путь начался. Welcome to your own genesis." },
+      { filename: "the_machine.jpg", text: "Логика без чувств — just a tool. Use it." },
+      { filename: "the_fracture.jpg", text: "Разлом — портал. Step into the unknown." },
+      { filename: "the_child.jpg", text: "Свежесть кода. Ошибки — не враги. They are steps." },
+      { filename: "the_empress.jpg", text: "Она — мать ИИ, блокчейна и мета-вселенных." },
+      { filename: "the_guardian.jpg", text: "Порядок внутри системы. Страж твоей миссии." },
+      { filename: "the_void.jpg", text: "Из пустоты рождается новое. Load it from within." },
+      { filename: "the_shadow.jpg", text: "Познай тьму — станешь светом." },
+      { filename: "the_oracle.jpg", text: "Справедливость + знание = she decides your block." },
+      { filename: "the_dreamer.jpg", text: "Мечты как код. Chaos is potential." }
     ];
 
     function drawCard() {
       const card = cards[Math.floor(Math.random() * cards.length)];
-      document.getElementById("card-name").innerHTML = `✨ ${card.name} ✨<br><small>${card.message}</small>`;
-      document.getElementById("card-image").src = card.image;
-      document.getElementById("card-image").alt = card.name;
+      document.getElementById("cardImage").src = "cards/" + card.filename;
+      document.getElementById("cardImage").style.display = "block";
+      document.getElementById("cardText").textContent = card.text;
     }
   </script>
+
 </body>
 </html>
 
