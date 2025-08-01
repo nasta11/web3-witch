@@ -85,7 +85,7 @@
 
     function drawCard() {
       const card = cards[Math.floor(Math.random() * cards.length)];
-      document.getElementById("cardImage").src = "cards/" + card.filename;
+      document.getElementById("cardImage").src = card.filename;
       document.getElementById("cardImage").style.display = "block";
       document.getElementById("cardText").textContent = card.text;
     }
