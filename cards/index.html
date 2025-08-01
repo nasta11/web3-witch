@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web3 Witch</title>
+  <style>
+    body {
+      background-color: #0b0014;
+      color: #e6caff;
+      font-family: 'Georgia', serif;
+      text-align: center;
+      padding-top: 80px;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 40px;
+    }
+    img {
+      margin-top: 30px;
+      max-width: 90%;
+      height: auto;
+      border: 2px solid #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #6a00ff;
+    }
+    button {
+      background-color: #6a00ff;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .footer {
+      margin-top: 50px;
+      font-size: 0.9em;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <h1>✨ Web3 Witch ✨</h1>
+  <button onclick="drawCard()">Draw Your Card</button>
+  <div id="cardResult"></div>
+
+  <script>
+    const cards = [
+      "the_moonlight.jpg",
+      "the_shadow.jpg",
+      "the_guardian.jpg",
+      "the_crown.jpg",
+      "the_fracture.jpg",
+      "the_machine.jpg",
+      "the_mirror.jpg",
+      "the_pulse.jpg",
+      "the_gate.jpg",
+      "the_initiate.jpg",
+      "the_weaver.jpg",
+      "the_hacker.jpg",
+      "the_flame.jpg",
+      "pure_code.jpg",
+      "the_connection.jpg",
+      "the_oracle.jpg",
+      "the_child.jpg",
+      "the_virus.jpg",
+      "the_void.jpg",
+      "the_empress.jpg",
+      "the_dreamer.jpg"
+    ];
+
+    function drawCard() {
+      const randomIndex = Math.floor(Math.random() * cards.length);
+      const card = cards[randomIndex];
+      const imagePath = "cards/" + card;
+
+      document.getElementById("cardResult").innerHTML = `
+        <h2>${card.replace(".jpg", "").replaceAll("_", " ").toUpperCase()}</h2>
+        <img src="${imagePath}" alt="Card image" />
+      `;
+    }
+  </script>
+
+  <div class="footer">© 2025 WitchWeb3 Project</div>
+</body>
+</html>
+
