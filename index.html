@@ -1,98 +1,114 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Web3 Witch</title>
   <style>
     body {
-      background-color: #100018;
-      color: #e6ccff;
+      background-color: #0b0014;
+      color: #e8d7ff;
       font-family: 'Georgia', serif;
-      text-align: center;
-      padding: 60px 20px;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
     }
+
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
     }
+
     button {
-      background-color: #9400ff;
-      color: white;
+      background-color: #a020f0;
       border: none;
-      padding: 15px 30px;
-      font-size: 18px;
+      padding: 1rem 2rem;
+      color: white;
+      font-size: 1rem;
       border-radius: 12px;
       cursor: pointer;
-      box-shadow: 0 0 10px #9400ff;
+      box-shadow: 0 0 10px #a020f0;
       transition: background-color 0.3s ease;
     }
+
     button:hover {
-      background-color: #b94fff;
+      background-color: #8a1bd1;
     }
-    #cardContainer {
-      margin-top: 40px;
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2rem;
+      max-width: 90%;
     }
-    #cardImage {
-      max-width: 300px;
-      border: 2px solid #884bff;
+
+    .card img {
+      width: 300px;
+      max-width: 100%;
+      border: 2px solid #a020f0;
       border-radius: 12px;
-      display: none;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 20px #a020f0;
     }
-    #cardName {
-      margin-top: 15px;
-      font-size: 24px;
+
+    .card h2 {
+      margin: 0.5rem 0;
     }
-    #cardText {
-      font-size: 18px;
-      margin-top: 10px;
+
+    .card p {
+      font-size: 1.1rem;
+      margin: 0;
+      max-width: 500px;
     }
   </style>
 </head>
 <body>
-
   <h1>✨ Web3 Witch ✨</h1>
   <button onclick="drawCard()">Draw your destiny</button>
 
-  <div id="cardContainer">
-    <img id="cardImage" src="" alt="Card" />
+  <div class="card" id="cardContainer" style="display: none;">
+    <img id="cardImage" src="" alt="Card image" />
     <h2 id="cardName"></h2>
     <p id="cardText"></p>
   </div>
 
   <script>
     const cards = [
-      { name: "The Moonlight", text: "Ты наблюдаешь в тени. Insight is clarity.", img: "the_moonlight.jpg" },
-      { name: "The Connection", text: "Сеть зовёт. You’re never alone.", img: "the_connection.jpg" },
-      { name: "The Gate", text: "Открывай. Beyond lies truth.", img: "the_gate.jpg" },
-      { name: "The Crown", text: "Ты лидер. Lead with intention.", img: "the_crown.jpg" },
-      { name: "The Mirror", text: "Смотри внутрь. Reflect and rise.", img: "the_mirror.jpg" },
-      { name: "The Hacker", text: "Взломай систему. Rules were meant to bend.", img: "the_hacker.jpg" },
-      { name: "The Flame", text: "Действуй. Пламя не просит разрешения.", img: "the_flame.jpg" },
-      { name: "Pure Code", text: "Ты чистый код. No bugs, just purpose.", img: "pure_code.jpg" },
-      { name: "The Pulse", text: "Чувствуй ритм. Sync with the signal.", img: "the_pulse.jpg" },
-      { name: "The Weaver", text: "Ты создаешь узоры. Everything is connected.", img: "the_weaver.jpg" },
-      { name: "The Virus", text: "Будь осторожен. Not all updates are good.", img: "the_virus.jpg" },
-      { name: "The Initiate", text: "Ты на пути. Every journey starts small.", img: "the_initiate.jpg" },
-      { name: "The Machine", text: "Машина учится. So should you.", img: "the_machine.jpg" },
-      { name: "The Fracture", text: "Ты разбит. But cracks let light in.", img: "the_fracture.jpg" },
-      { name: "The Child", text: "Смотри с любопытством. Wonder is power.", img: "the_child.jpg" },
-      { name: "The Empress", text: "Твори. Create with grace and chaos.", img: "the_empress.jpg" },
-      { name: "The Guardian", text: "Ты хранишь знание. Protect and evolve.", img: "the_guardian.jpg" },
-      { name: "The Void", text: "Смотри в пустоту. It looks back.", img: "the_void.jpg" },
-      { name: "The Shadow", text: "Ты не один. Darkness walks with you.", img: "the_shadow.jpg" },
-      { name: "The Oracle", text: "Ты знаешь. Trust your pattern recognition.", img: "the_oracle.jpg" },
-      { name: "The Dreamer", text: "Мечтай. Code the impossible.", img: "the_dreamer.jpg" }
+      { name: "The Moonlight", text: "Ты наблюдаешь в тени. Insight is clarity.", filename: "the_moonlight.jpg" },
+      { name: "The Connection", text: "Сеть зовёт. You’re never alone.", filename: "the_connection.jpg" },
+      { name: "The Gate", text: "Открывай. Beyond lies truth.", filename: "the_gate.jpg" },
+      { name: "The Crown", text: "Ты лидер. Lead with intention.", filename: "the_crown.jpg" },
+      { name: "The Mirror", text: "Смотри внутрь. Reflect and rise.", filename: "the_mirror.jpg" },
+      { name: "The Hacker", text: "Взломай систему. Rules were meant to bend.", filename: "the_hacker.jpg" },
+      { name: "The Flame", text: "Действуй. Пламя не просит разрешения.", filename: "the_flame.jpg" },
+      { name: "Pure Code", text: "Ты чистый код. No bugs, just purpose.", filename: "pure_code.jpg" },
+      { name: "The Pulse", text: "Чувствуй ритм. Sync with the signal.", filename: "the_pulse.jpg" },
+      { name: "The Weaver", text: "Ты создаешь узоры. Everything is connected.", filename: "the_weaver.jpg" },
+      { name: "The Virus", text: "Будь осторожен. Not all updates are good.", filename: "the_virus.jpg" },
+      { name: "The Initiate", text: "Ты на пути. Every journey starts small.", filename: "the_initiate.jpg" },
+      { name: "The Machine", text: "Машина учится. So should you.", filename: "the_machine.jpg" },
+      { name: "The Fracture", text: "Ты разбит. But cracks let light in.", filename: "the_fracture.jpg" },
+      { name: "The Child", text: "Смотри с любопытством. Wonder is power.", filename: "the_child.jpg" },
+      { name: "The Empress", text: "Твори. Create with grace and chaos.", filename: "the_empress.jpg" },
+      { name: "The Guardian", text: "Ты хранишь знание. Protect and evolve.", filename: "the_guardian.jpg" },
+      { name: "The Void", text: "Смотри в пустоту. It looks back.", filename: "the_void.jpg" },
+      { name: "The Shadow", text: "Ты не один. Darkness walks with you.", filename: "the_shadow.jpg" },
+      { name: "The Oracle", text: "Ты знаешь. Trust your pattern recognition.", filename: "the_oracle.jpg" },
+      { name: "The Dreamer", text: "Мечтай. Code the impossible.", filename: "the_dreamer.jpg" }
     ];
 
     function drawCard() {
       const card = cards[Math.floor(Math.random() * cards.length)];
-      document.getElementById("cardImage").src = `cards/${card.img}`;
-      document.getElementById("cardImage").style.display = "block";
-      document.getElementById("cardName").innerText = `✨ ${card.name} ✨`;
-      document.getElementById("cardText").innerText = card.text;
+      document.getElementById("cardImage").src = `cards/${card.filename}`;
+      document.getElementById("cardName").textContent = `✨ ${card.name} ✨`;
+      document.getElementById("cardText").textContent = card.text;
+      document.getElementById("cardContainer").style.display = "flex";
     }
   </script>
-
 </body>
 </html>
 
