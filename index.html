@@ -62,21 +62,14 @@
     .thumbs {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
-      gap: 8px;
-      margin-top: 12px;
+      gap: 8px; margin-top: 12px;
     }
     .thumbs img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border: 1px solid #2b1242;
-      border-radius: 8px;
+      width: 100%; height: 100%; object-fit: cover;
+      border: 1px solid #2b1242; border-radius: 8px;
       box-shadow: 0 0 10px rgba(160,32,240,0.12);
     }
-    .blurred {
-      filter: blur(6px);
-      transition: filter 0.25s ease;
-    }
+    .blurred { filter: blur(6px); transition: filter 0.25s ease; }
 
     .fade-in { animation: fadeIn 420ms ease-out; }
     @keyframes fadeIn {
@@ -106,15 +99,10 @@
     </aside>
   </div>
 
-  <!-- xterm.js script -->
-  <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js"></script>
+  <!-- xterm.js script (всегда раньше app.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js" defer></script>
 
-  <!-- App logic with cache-busting -->
-  <script>
-    const s = document.createElement('script');
-    s.src = '/app.js?v=' + Date.now();
-    s.defer = true;
-    document.body.appendChild(s);
-  </script>
+  <!-- App logic: статическое подключение + версия для сбивания кэша -->
+  <script src="/app.js?v=5" defer></script>
 </body>
 </html>
