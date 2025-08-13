@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Web3 Witch — Terminal</title>
 
-  <!-- xterm.js (CDN) -->
+  <!-- xterm.js (CSS) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css">
 
   <style>
@@ -99,10 +99,51 @@
     </aside>
   </div>
 
-  <!-- xterm.js script (всегда раньше app.js) -->
-  <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js" defer></script>
+  <!-- Robust loader: xterm → app.js (с фолбэком CDN и анти-кэшем) -->
+  <script>
+    (function loadAll() {
+      const VER = '7'; // меняй при апдейте, чтобы сбить кэш
 
-  <!-- App logic: статическое подключение + версия для сбивания кэша -->
-  <script src="/app.js?v=5" defer></script>
+      function addScript(src, onload, onerror) {
+        const s = document.createElement('script');
+        s.src = src;
+        s.onload = onload;
+        s.onerror = onerror || function(){};
+        document.body.appendChild(s);
+      }
+
+      function loadXterm(next) {
+        addScript(
+          'https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js',
+          next,
+          function fallback() {
+            addScript('https://unpkg.com/xterm@5.3.0/lib/xterm.min.js', next, function () {
+              console.error('Failed to load xterm.js from both CDNs');
+              const box = document.getElementById('terminal');
+              if (box) box.innerHTML = '<div style="padding:12px;color:#ff8fab">xterm.js failed to load. Try reload (⌥⌘R).</div>';
+            });
+          }
+        );
+      }
+
+      function loadApp() {
+        const addApp = () => addScript('/app.js?v=' + VER);
+        if (typeof window.Terminal === 'function') addApp();
+        else {
+          let tries = 0;
+          const t = setInterval(() => {
+            if (typeof window.Terminal === 'function' || ++tries > 100) {
+              clearInterval(t);
+              if (typeof window.Terminal === 'function') addApp();
+              else console.error('Terminal is not defined after xterm load');
+            }
+          }, 50);
+        }
+      }
+
+      if (document.readyState === 'complete') loadXterm(loadApp);
+      else window.addEventListener('load', () => loadXterm(loadApp));
+    })();
+  </script>
 </body>
 </html>
