@@ -3,112 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Web3 Witch</title>
+  <title>Web3 Witch — Terminal</title>
+
+  <!-- xterm.js (CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css">
   <style>
-    body {
-      background-color: #0b0014;
-      color: #e8d7ff;
-      font-family: 'Georgia', serif;
-      margin: 0;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
+    :root {
+      --bg: #0b0014;
+      --fg: #e8d7ff;
+      --accent: #a020f0;
+      --accent-2: #5f15a8;
+      --error: #ff8fab;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      background: var(--bg); color: var(--fg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .wrap {
+      max-width: 1100px; margin: 0 auto; padding: 24px;
+      display: grid; grid-template-columns: 1fr 360px; gap: 24px;
+    }
+    header {
+      grid-column: 1 / -1;
+      display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+      padding-bottom: 8px; border-bottom: 1px solid #2b1242;
+    }
+    h1 { margin: 0; font-size: 24px; letter-spacing: 0.5px; }
+    .hint { opacity: 0.8; font-size: 14px; }
+    .hint code { background: #170425; padding: 2px 6px; border-radius: 6px; }
+
+    /* Terminal */
+    #terminal {
+      width: 100%; height: 520px; border: 1px solid #2b1242; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 0 20px rgba(160,32,240,0.25);
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-    }
-
-    button {
-      background-color: #a020f0;
-      border: none;
-      padding: 1rem 2rem;
-      color: white;
-      font-size: 1rem;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #a020f0;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #8a1bd1;
-    }
-
+    /* Card Preview */
     .card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 2rem;
-      max-width: 90%;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 12px; position: sticky; top: 24px;
+      background: #140323; border: 1px solid #2b1242; border-radius: 14px;
+      padding: 16px; box-shadow: 0 0 20px rgba(160,32,240,0.25);
+      min-height: 520px;
     }
-
     .card img {
-      width: 300px;
-      max-width: 100%;
-      border: 2px solid #a020f0;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      box-shadow: 0 0 20px #a020f0;
+      width: 320px; max-width: 100%;
+      border: 2px solid var(--accent); border-radius: 12px;
+      box-shadow: 0 0 20px var(--accent);
     }
+    .card h2 { margin: 0; font-size: 18px; text-align: center; }
+    .card p  { margin: 0; font-size: 15px; text-align: center; line-height: 1.45; }
+    .muted { opacity: 0.8; font-size: 13px; }
 
-    .card h2 {
-      margin: 0.5rem 0;
-    }
-
-    .card p {
-      font-size: 1.1rem;
-      margin: 0;
-      max-width: 500px;
+    .fade-in { animation: fadeIn 420ms ease-out; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0)    scale(1); }
     }
   </style>
 </head>
 <body>
-  <h1>✨ Web3 Witch ✨</h1>
-  <button onclick="drawCard()">Draw your destiny</button>
+  <div class="wrap">
+    <header>
+      <h1>✨ Web3 Witch — Terminal ✨</h1>
+      <div class="hint">type <code>help</code> to see commands</div>
+    </header>
 
-  <div class="card" id="cardContainer" style="display: none;">
-    <img id="cardImage" src="" alt="Card image" />
-    <h2 id="cardName"></h2>
-    <p id="cardText"></p>
+    <main>
+      <div id="terminal"></div>
+    </main>
+
+    <aside>
+      <div class="card" id="cardContainer">
+        <img id="cardImage" src="" alt="Card image" />
+        <h2 id="cardName" class="muted">No card drawn yet</h2>
+        <p id="cardText" class="muted">Use <b>draw</b> in the terminal to pull a card.</p>
+      </div>
+    </aside>
   </div>
 
-  <script>
-    const cards = [
-      { name: "The Moonlight", text: "Ты наблюдаешь в тени. Insight is clarity.", filename: "the_moonlight.jpg" },
-      { name: "The Connection", text: "Сеть зовёт. You’re never alone.", filename: "the_connection.jpg" },
-      { name: "The Gate", text: "Открывай. Beyond lies truth.", filename: "the_gate.jpg" },
-      { name: "The Crown", text: "Ты лидер. Lead with intention.", filename: "the_crown.jpg" },
-      { name: "The Mirror", text: "Смотри внутрь. Reflect and rise.", filename: "the_mirror.jpg" },
-      { name: "The Hacker", text: "Взломай систему. Rules were meant to bend.", filename: "the_hacker.jpg" },
-      { name: "The Flame", text: "Действуй. Пламя не просит разрешения.", filename: "the_flame.jpg" },
-      { name: "Pure Code", text: "Ты чистый код. No bugs, just purpose.", filename: "pure_code.jpg" },
-      { name: "The Pulse", text: "Чувствуй ритм. Sync with the signal.", filename: "the_pulse.jpg" },
-      { name: "The Weaver", text: "Ты создаешь узоры. Everything is connected.", filename: "the_weaver.jpg" },
-      { name: "The Virus", text: "Будь осторожен. Not all updates are good.", filename: "the_virus.jpg" },
-      { name: "The Initiate", text: "Ты на пути. Every journey starts small.", filename: "the_initiate.jpg" },
-      { name: "The Machine", text: "Машина учится. So should you.", filename: "the_machine.jpg" },
-      { name: "The Fracture", text: "Ты разбит. But cracks let light in.", filename: "the_fracture.jpg" },
-      { name: "The Child", text: "Смотри с любопытством. Wonder is power.", filename: "the_child.jpg" },
-      { name: "The Empress", text: "Твори. Create with grace and chaos.", filename: "the_empress.jpg" },
-      { name: "The Guardian", text: "Ты хранишь знание. Protect and evolve.", filename: "the_guardian.jpg" },
-      { name: "The Void", text: "Смотри в пустоту. It looks back.", filename: "the_void.jpg" },
-      { name: "The Shadow", text: "Ты не один. Darkness walks with you.", filename: "the_shadow.jpg" },
-      { name: "The Oracle", text: "Ты знаешь. Trust your pattern recognition.", filename: "the_oracle.jpg" },
-      { name: "The Dreamer", text: "Мечтай. Code the impossible.", filename: "the_dreamer.jpg" }
-    ];
+  <!-- xterm.js script -->
+  <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js"></script>
 
-    function drawCard() {
-      const card = cards[Math.floor(Math.random() * cards.length)];
-      document.getElementById("cardImage").src = `cards/${card.filename}`;
-      document.getElementById("cardName").textContent = `✨ ${card.name} ✨`;
-      document.getElementById("cardText").textContent = card.text;
-      document.getElementById("cardContainer").style.display = "flex";
-    }
-  </script>
+  <!-- App logic -->
+  <script src="./app.js" defer></script>
 </body>
 </html>
 
+
+  
