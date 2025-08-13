@@ -12,7 +12,32 @@ const els = {
 let CARDS = [];
 let lastIndex = -1;
 
-// ---------- Terminal ----------
+/* ---------- INLINE FALLBACK (works with file:// or offline) ---------- */
+const CARDS_INLINE = [
+  { name: "The Moonlight",  textEn: "Insight is clarity.",               filename: "the_moonlight.jpg"  },
+  { name: "The Connection", textEn: "You’re never alone.",               filename: "the_connection.jpg" },
+  { name: "The Gate",       textEn: "Beyond lies truth.",                filename: "the_gate.jpg"       },
+  { name: "The Crown",      textEn: "Lead with intention.",              filename: "the_crown.jpg"      },
+  { name: "The Mirror",     textEn: "Reflect and rise.",                 filename: "the_mirror.jpg"     },
+  { name: "The Hacker",     textEn: "Rules were meant to bend.",         filename: "the_hacker.jpg"     },
+  { name: "The Flame",      textEn: "Act. The flame asks no permission.",filename: "the_flame.jpg"      },
+  { name: "Pure Code",      textEn: "Pure code. No bugs, just purpose.", filename: "pure_code.jpg"      },
+  { name: "The Pulse",      textEn: "Sync with the signal.",             filename: "the_pulse.jpg"      },
+  { name: "The Weaver",     textEn: "Everything is connected.",          filename: "the_weaver.jpg"     },
+  { name: "The Virus",      textEn: "Not all updates are good.",         filename: "the_virus.jpg"      },
+  { name: "The Initiate",   textEn: "Every journey starts small.",       filename: "the_initiate.jpg"   },
+  { name: "The Machine",    textEn: "The machine learns. So should you.",filename: "the_machine.jpg"    },
+  { name: "The Fracture",   textEn: "Cracks let the light in.",          filename: "the_fracture.jpg"   },
+  { name: "The Child",      textEn: "Wonder is power.",                  filename: "the_child.jpg"      },
+  { name: "The Empress",    textEn: "Create with grace and chaos.",      filename: "the_empress.jpg"    },
+  { name: "The Guardian",   textEn: "Protect and evolve.",               filename: "the_guardian.jpg"   },
+  { name: "The Void",       textEn: "Stare into the void; it stares back.", filename: "the_void.jpg"   },
+  { name: "The Shadow",     textEn: "Darkness walks with you.",          filename: "the_shadow.jpg"     },
+  { name: "The Oracle",     textEn: "Trust your pattern recognition.",   filename: "the_oracle.jpg"     },
+  { name: "The Dreamer",    textEn: "Code the impossible.",              filename: "the_dreamer.jpg"    }
+];
+
+/* ---------- Terminal ---------- */
 /* global Terminal */
 const term = new Terminal({
   convertEol: true,
@@ -40,27 +65,63 @@ let inputBuffer = '';
 
 function println(s = '') { term.writeln(s); }
 function prompt() { term.write(PROMPT); }
-
 function color(txt, c = 141) { return `\x1b[38;5;${c}m${txt}\x1b[0m`; }
-function ok(txt)    { println(`${color('✔', 83)} ${txt}`); }
-function warn(txt)  { println(`${color('!', 214)} ${txt}`); }
-function err(txt)   { println(`${color('✖', 203)} ${txt}`); }
+function ok(txt)   { println(`${color('✔', 83)} ${txt}`); }
+function warn(txt) { println(`${color('!', 214)} ${txt}`); }
+function err(txt)  { println(`${color('✖', 203)} ${txt}`); }
 
-// ---------- Data ----------
+/* ---------- Data loading (absolute URL + fallbacks) ---------- */
+async function tryFetch(url) {
+  const res = await fetch(url, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+  return res.json();
+}
+
 async function loadCards() {
-  try {
-    const res = await fetch('./cards/cards.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    if (!Array.isArray(data) || data.length === 0) {
-      throw new Error('cards.json is empty or malformed');
-    }
-    CARDS = data;
-    ok(`Loaded ${CARDS.length} cards.`);
-  } catch (e) {
-    err('Could not load cards.json. Run via a local server or GitHub Pages.');
-    println(color(String(e), 203));
+  // 1) абсолютная ссылка на прод-домен
+  const ts = Date.now(); // сбиваем кэш
+  const absolute = `https://witchweb3.com/cards/cards.json?ts=${ts}`;
+
+  // 2) относительные пути на случай запуска с домена/локального сервера
+  const relatives = [
+    `/cards/cards.json?ts=${ts}`,
+    `./cards/cards.json?ts=${ts}`
+  ];
+
+  // если file:// — сразу inline
+  if (location.protocol === 'file:') {
+    CARDS = CARDS_INLINE;
+    ok(`Loaded ${CARDS.length} inline cards (file:// mode).`);
+    return;
   }
+
+  // пробуем абсолютный
+  try {
+    const data = await tryFetch(absolute);
+    if (Array.isArray(data) && data.length) {
+      CARDS = data;
+      ok(`Loaded ${CARDS.length} cards from witchweb3.com.`);
+      return;
+    }
+  } catch (_) {
+    warn('Absolute fetch failed, trying relative paths…');
+  }
+
+  // пробуем относительные
+  for (const url of relatives) {
+    try {
+      const data = await tryFetch(url);
+      if (Array.isArray(data) && data.length) {
+        CARDS = data;
+        ok(`Loaded ${CARDS.length} cards from ${url.replace(/\?.*$/,'')}.`);
+        return;
+      }
+    } catch (_) { /* next */ }
+  }
+
+  // последний шанс — inline
+  CARDS = CARDS_INLINE;
+  ok(`Loaded ${CARDS.length} inline cards (fallback).`);
 }
 
 function randIndex() {
@@ -73,7 +134,7 @@ function randIndex() {
 
 function applyFadeIn(el) {
   el.classList.remove('fade-in');
-  void el.offsetWidth; // reflow
+  void el.offsetWidth;
   el.classList.add('fade-in');
 }
 
@@ -87,10 +148,10 @@ function renderCard(card) {
   applyFadeIn(els.card);
 }
 
-// ---------- Commands ----------
+/* ---------- Commands ---------- */
 const history = [];
 
-async function cmd_help() {
+function cmd_help() {
   println(color('Available commands:', 69));
   println(`  ${color('help',141)}         Show this help`);
   println(`  ${color('draw',141)} / ${color('d',141)}   Draw a random card`);
@@ -161,53 +222,29 @@ function showCard(arg) {
   logDraw(card);
 }
 
-async function handleCommand(line) {
-  const [cmd, ...rest] = line.trim().split(/\s+/);
-  const arg = rest.join(' ').trim();
+/* ---------- Terminal input handling ---------- */
+const CMDS = { help: cmd_help, draw: drawRandom, d: drawRandom, next: drawRandom, show: showCard, list: cmd_list, history: cmd_history, share: cmd_share, clear: cmd_clear };
 
-  switch ((cmd || '').toLowerCase()) {
-    case 'help':     return cmd_help();
-    case 'draw':
-    case 'd':        return drawRandom();
-    case 'next':     return drawRandom();
-    case 'show':     return showCard(arg);
-    case 'list':     return cmd_list();
-    case 'history':  return cmd_history();
-    case 'share':    return cmd_share();
-    case 'clear':    return cmd_clear();
-    case '':         return;
-    default:
-      err(`Unknown command: ${cmd}`);
-      println(`Try ${color('help',141)}.`);
-  }
-}
-
-// ---------- Terminal input handling ----------
 term.onKey(({ key, domEvent }) => {
   const { key: k, code } = domEvent;
-
   if (k === 'Enter') {
     term.write('\r\n');
-    const line = inputBuffer;
+    const [cmd, ...rest] = inputBuffer.trim().split(/\s+/);
+    const arg = rest.join(' ').trim();
     inputBuffer = '';
-    handleCommand(line);
+    const fn = CMDS[(cmd || '').toLowerCase()];
+    if (fn) fn(arg); else if (cmd) { err(`Unknown command: ${cmd}`); println(`Try ${color('help',141)}.`); }
     prompt();
   } else if (k === 'Backspace') {
-    if (inputBuffer.length > 0) {
-      term.write('\b \b');
-      inputBuffer = inputBuffer.slice(0, -1);
-    }
+    if (inputBuffer.length > 0) { term.write('\b \b'); inputBuffer = inputBuffer.slice(0, -1); }
   } else if (code === 'KeyC' && domEvent.ctrlKey) {
-    term.write('^C\r\n');
-    inputBuffer = '';
-    prompt();
+    term.write('^C\r\n'); inputBuffer = ''; prompt();
   } else if (k.length === 1) {
-    inputBuffer += key;
-    term.write(key);
+    inputBuffer += key; term.write(key);
   }
 });
 
-// ---------- Init ----------
+/* ---------- Init ---------- */
 (async function init() {
   println(color('Web3 Witch Terminal ready.', 141));
   println(`Type ${color('help',141)} to see available commands.`);
@@ -215,4 +252,3 @@ term.onKey(({ key, domEvent }) => {
   await loadCards();
   prompt();
 })();
-
