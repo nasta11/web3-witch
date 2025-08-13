@@ -14,7 +14,7 @@ const els = {
 
 /* ===== Terminal ===== */
 function initTerminal() {
-  // @ts-ignore global Terminal from xterm.js
+  // global Terminal from xterm.js
   term = new Terminal({
     convertEol: true,
     fontSize: 14,
@@ -120,7 +120,7 @@ function renderCard(card, idx){
   els.img.alt = `${card.name} card`;
   els.name.textContent = `✨ ${card.name} ✨`;
   els.name.classList.remove('muted');
-  els.text.textContent = card.textEn; // EN only
+  els.text.textContent = card.textEn; // EN-only text
   els.text.classList.remove('muted');
   els.card.classList.remove('fade-in'); void els.card.offsetWidth; els.card.classList.add('fade-in');
   setActiveThumb(idx);
@@ -200,5 +200,13 @@ function cmd_show(arg){
 /* ===== Init ===== */
 (async function init(){
   await loadCards();
-  initTerminal();
+  // на всякий случай ждём Terminal
+  if (typeof window.Terminal === 'function') {
+    initTerminal();
+  } else {
+    const w = setInterval(() => {
+      if (typeof window.Terminal === 'function') { clearInterval(w); initTerminal(); }
+    }, 50);
+    setTimeout(() => clearInterval(w), 10000);
+  }
 })();
