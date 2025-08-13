@@ -87,10 +87,12 @@
   <!-- xterm.js script -->
   <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js"></script>
 
-  <!-- App logic -->
-  <script src="./app.js" defer></script>
+  <!-- App logic with cache-busting -->
+  <script>
+    const script = document.createElement('script');
+    script.src = '/app.js?v=' + new Date().getTime();
+    script.defer = true;
+    document.body.appendChild(script);
+  </script>
 </body>
 </html>
-
-
-  
