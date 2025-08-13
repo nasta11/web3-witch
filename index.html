@@ -5,88 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Web3 Witch — Terminal</title>
 
-  <!-- xterm.js (CSS) -->
+  <!-- xterm.css -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css">
 
   <style>
-    :root {
-      --bg: #0b0014;
-      --fg: #e8d7ff;
-      --accent: #a020f0;
-      --accent-2: #5f15a8;
-      --error: #ff8fab;
-    }
+    :root { --bg:#0b0014; --fg:#e8d7ff; --accent:#a020f0; }
     * { box-sizing: border-box; }
-    html, body {
-      margin: 0; padding: 0; height: 100%;
-      background: var(--bg); color: var(--fg);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-    .wrap {
-      max-width: 1100px; margin: 0 auto; padding: 24px;
-      display: grid; grid-template-columns: 1fr 360px; gap: 24px;
-    }
-    header {
-      grid-column: 1 / -1;
-      display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
-      padding-bottom: 8px; border-bottom: 1px solid #2b1242;
-    }
-    h1 { margin: 0; font-size: 24px; letter-spacing: 0.5px; }
-    .hint { opacity: 0.8; font-size: 14px; }
-    .hint code { background: #170425; padding: 2px 6px; border-radius: 6px; }
+    html, body { margin:0; padding:0; height:100%; background:var(--bg); color:var(--fg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .wrap { max-width:1100px; margin:0 auto; padding:24px; display:grid;
+      grid-template-columns:1fr 360px; gap:24px; }
+    header { grid-column:1/-1; display:flex; align-items:baseline; justify-content:space-between;
+      gap:16px; padding-bottom:8px; border-bottom:1px solid #2b1242; }
+    h1 { margin:0; font-size:24px; }
+    .hint { opacity:.8; font-size:14px; }
+    #terminal { width:100%; height:520px; border:1px solid #2b1242; border-radius:12px; overflow:hidden;
+      box-shadow:0 0 20px rgba(160,32,240,.25); }
 
-    /* Terminal */
-    #terminal {
-      width: 100%; height: 520px; border: 1px solid #2b1242; border-radius: 12px; overflow: hidden;
-      box-shadow: 0 0 20px rgba(160,32,240,0.25);
-    }
+    .card { display:flex; flex-direction:column; align-items:center; gap:12px; position:sticky; top:24px;
+      background:#140323; border:1px solid #2b1242; border-radius:14px; padding:16px;
+      box-shadow:0 0 20px rgba(160,32,240,.25); min-height:520px; }
+    .card img { width:320px; max-width:100%; border:2px solid var(--accent); border-radius:12px;
+      box-shadow:0 0 20px var(--accent); }
+    .card h2 { margin:0; font-size:18px; text-align:center; }
+    .card p { margin:0; font-size:15px; text-align:center; line-height:1.45; }
+    .muted { opacity:.8; font-size:13px; }
 
-    /* Card Preview */
-    .card {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 12px; position: sticky; top: 24px;
-      background: #140323; border: 1px solid #2b1242; border-radius: 14px;
-      padding: 16px; box-shadow: 0 0 20px rgba(160,32,240,0.25);
-      min-height: 520px;
-    }
-    .card img {
-      width: 320px; max-width: 100%;
-      border: 2px solid var(--accent); border-radius: 12px;
-      box-shadow: 0 0 20px var(--accent);
-    }
-    .card h2 { margin: 0; font-size: 18px; text-align: center; }
-    .card p  { margin: 0; font-size: 15px; text-align: center; line-height: 1.45; }
-    .muted { opacity: 0.8; font-size: 13px; }
+    .thumbs { display:grid; grid-template-columns:repeat(auto-fill, minmax(72px,1fr)); gap:8px; margin-top:12px; }
+    .thumbs img { width:100%; height:100%; object-fit:cover; border:1px solid #2b1242; border-radius:8px;
+      box-shadow:0 0 10px rgba(160,32,240,.12); }
+    .blurred { filter:blur(6px); transition:filter .25s ease; }
+    .fade-in { animation:fadeIn .42s ease-out; }
+    @keyframes fadeIn { from {opacity:0; transform:translateY(6px) scale(.98);} to {opacity:1; transform:none;} }
 
-    /* Thumbnails grid */
-    .thumbs {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
-      gap: 8px; margin-top: 12px;
-    }
-    .thumbs img {
-      width: 100%; height: 100%; object-fit: cover;
-      border: 1px solid #2b1242; border-radius: 8px;
-      box-shadow: 0 0 10px rgba(160,32,240,0.12);
-    }
-    .blurred { filter: blur(6px); transition: filter 0.25s ease; }
-
-    .fade-in { animation: fadeIn 420ms ease-out; }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px) scale(0.98); }
-      to   { opacity: 1; transform: translateY(0)    scale(1); }
-    }
+    /* Simple mode (fallback when xterm missing) */
+    .simple-controls { display:none; margin-top:12px; }
+    .simple-controls button { background:#a020f0; color:#fff; border:none; border-radius:10px;
+      padding:10px 14px; cursor:pointer; margin-right:8px; }
+    .simple-mode .simple-controls { display:block; }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <h1>✨ Web3 Witch — Terminal ✨</h1>
-      <div class="hint">type <code>help</code> to see commands</div>
+      <div class="hint">type <code>help</code> in terminal — or use buttons in fallback mode</div>
     </header>
 
     <main>
       <div id="terminal"></div>
+      <div class="simple-controls" id="simpleControls">
+        <button id="btnDraw">Draw</button>
+        <button id="btnList">List</button>
+      </div>
     </main>
 
     <aside>
@@ -99,51 +70,9 @@
     </aside>
   </div>
 
-  <!-- Robust loader: xterm → app.js (с фолбэком CDN и анти-кэшем) -->
-  <script>
-    (function loadAll() {
-      const VER = '7'; // меняй при апдейте, чтобы сбить кэш
-
-      function addScript(src, onload, onerror) {
-        const s = document.createElement('script');
-        s.src = src;
-        s.onload = onload;
-        s.onerror = onerror || function(){};
-        document.body.appendChild(s);
-      }
-
-      function loadXterm(next) {
-        addScript(
-          'https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js',
-          next,
-          function fallback() {
-            addScript('https://unpkg.com/xterm@5.3.0/lib/xterm.min.js', next, function () {
-              console.error('Failed to load xterm.js from both CDNs');
-              const box = document.getElementById('terminal');
-              if (box) box.innerHTML = '<div style="padding:12px;color:#ff8fab">xterm.js failed to load. Try reload (⌥⌘R).</div>';
-            });
-          }
-        );
-      }
-
-      function loadApp() {
-        const addApp = () => addScript('/app.js?v=' + VER);
-        if (typeof window.Terminal === 'function') addApp();
-        else {
-          let tries = 0;
-          const t = setInterval(() => {
-            if (typeof window.Terminal === 'function' || ++tries > 100) {
-              clearInterval(t);
-              if (typeof window.Terminal === 'function') addApp();
-              else console.error('Terminal is not defined after xterm load');
-            }
-          }, 50);
-        }
-      }
-
-      if (document.readyState === 'complete') loadXterm(loadApp);
-      else window.addEventListener('load', () => loadXterm(loadApp));
-    })();
-  </script>
+  <!-- xterm.js: статично и до app.js -->
+  <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js"></script>
+  <!-- app.js с версией (анти-кэш) -->
+  <script src="/app.js?v=8" defer></script>
 </body>
 </html>
