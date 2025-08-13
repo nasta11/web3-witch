@@ -49,7 +49,7 @@ function err(txt)   { println(`${color('✖', 203)} ${txt}`); }
 // ---------- Data ----------
 async function loadCards() {
   try {
-    const res = await fetch('./cards.json', { cache: 'no-store' });
+    const res = await fetch('./cards/cards.json', { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     if (!Array.isArray(data) || data.length === 0) {
