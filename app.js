@@ -1,19 +1,20 @@
-/* ====== Setup ====== */
+/* ===== Setup ===== */
 let term;
 let CARDS = [];
 let currentIndex = -1;
 
 const els = {
   termEl: document.getElementById('terminal'),
-  card: document.getElementById('cardContainer'),
-  img: document.getElementById('cardImage'),
-  name: document.getElementById('cardName'),
-  text: document.getElementById('cardText'),
+  card:   document.getElementById('cardContainer'),
+  img:    document.getElementById('cardImage'),
+  name:   document.getElementById('cardName'),
+  text:   document.getElementById('cardText'),
   thumbs: document.getElementById('thumbs'),
 };
 
-/* ====== Terminal ====== */
+/* ===== Terminal ===== */
 function initTerminal() {
+  // @ts-ignore global Terminal from xterm.js
   term = new Terminal({
     convertEol: true,
     fontSize: 14,
@@ -56,69 +57,64 @@ function initTerminal() {
   });
 }
 
-function println(t = '') { term.writeln(t); }
-function prompt() { term.write('\x1b[38;5;141mwitch@web3\x1b[0m:\x1b[38;5;69m~\x1b[0m$ '); }
-function color(txt, c = 141) { return `\x1b[38;5;${c}m${txt}\x1b[0m`; }
-function warn(txt) { println(`${color('✖', 203)} ${txt}`); }
-function ok(txt) { println(`${color('✔', 83)} ${txt}`); }
+function println(t=''){ term.writeln(t); }
+function prompt(){ term.write('\x1b[38;5;141mwitch@web3\x1b[0m:\x1b[38;5;69m~\x1b[0m$ '); }
+function color(txt,c=141){ return `\x1b[38;5;${c}m${txt}\x1b[0m`; }
+function warn(txt){ println(`${color('✖',203)} ${txt}`); }
+function ok(txt){ println(`${color('✔',83)} ${txt}`); }
 
-/* ====== Data loading ====== */
-async function tryFetch(url) {
-  const res = await fetch(url, { cache: 'no-store' });
-  if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+/* ===== Data loading ===== */
+async function tryFetch(url){
+  const res = await fetch(url,{ cache:'no-store' });
+  if(!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
   return res.json();
 }
 
-async function loadCards() {
-  // 1) абсолютный (прод)
+async function loadCards(){
   const ts = Date.now();
   const candidates = [
     `https://witchweb3.com/cards/cards.json?ts=${ts}`,
     `/cards/cards.json?ts=${ts}`,
     `./cards/cards.json?ts=${ts}`
   ];
-  for (const url of candidates) {
-    try {
+  for(const url of candidates){
+    try{
       const data = await tryFetch(url);
-      if (Array.isArray(data) && data.length) {
+      if(Array.isArray(data) && data.length){
         CARDS = data;
         ok(`Loaded ${CARDS.length} cards.`);
         return;
       }
-    } catch (_) { /* try next */ }
+    }catch(_){ /* try next */ }
   }
-  warn('Could not load cards.json.');
+  warn('Could not load cards.json. Try reloading the page.');
 }
 
-/* ====== Thumbnails ====== */
-function buildThumbnails() {
-  if (!els.thumbs) return;
+/* ===== Thumbnails ===== */
+function buildThumbnails(){
+  if(!els.thumbs) return;
   els.thumbs.innerHTML = '';
-  CARDS.forEach((c, i) => {
+  CARDS.forEach((c,i)=>{
     const t = document.createElement('img');
     t.src = `./cards/${c.filename}`;
     t.alt = c.name;
     t.className = 'blurred';
     t.dataset.index = String(i);
-    t.addEventListener('click', () => showCard(String(i + 1)));
+    t.addEventListener('click', ()=> cmd_show(String(i+1)));
     els.thumbs.appendChild(t);
   });
-  // если уже есть активная — снять блюр у неё
-  if (currentIndex >= 0) {
-    const active = els.thumbs.querySelector(`img[data-index="${currentIndex}"]`);
-    if (active) active.classList.remove('blurred');
-  }
+  if(currentIndex >= 0) setActiveThumb(currentIndex);
 }
 
-function setActiveThumb(idx) {
-  if (!els.thumbs) return;
+function setActiveThumb(idx){
+  if(!els.thumbs) return;
   els.thumbs.querySelectorAll('img').forEach(img => img.classList.add('blurred'));
   const active = els.thumbs.querySelector(`img[data-index="${idx}"]`);
-  if (active) active.classList.remove('blurred');
+  if(active) active.classList.remove('blurred');
 }
 
-/* ====== Render ====== */
-function renderCard(card, idx) {
+/* ===== Render ===== */
+function renderCard(card, idx){
   currentIndex = idx;
   els.img.src = `./cards/${card.filename}`;
   els.img.alt = `${card.name} card`;
@@ -126,19 +122,18 @@ function renderCard(card, idx) {
   els.name.classList.remove('muted');
   els.text.textContent = card.textEn; // EN only
   els.text.classList.remove('muted');
-  // animation
   els.card.classList.remove('fade-in'); void els.card.offsetWidth; els.card.classList.add('fade-in');
-
   setActiveThumb(idx);
 }
 
-/* ====== Commands ====== */
-function handleCommand(line) {
+/* ===== Commands ===== */
+function handleCommand(line){
   const [cmd, ...rest] = line.split(/\s+/);
   const arg = rest.join(' ').trim();
-  switch ((cmd || '').toLowerCase()) {
+
+  switch((cmd||'').toLowerCase()){
     case 'help':
-      println(color('Available commands:', 69));
+      println(color('Available commands:',69));
       println(`  ${color('help',141)}         Show this help`);
       println(`  ${color('list',141)}         Show all cards (blurred thumbnails)`);
       println(`  ${color('draw',141)}         Draw a random card`);
@@ -146,83 +141,64 @@ function handleCommand(line) {
       println(`  ${color('clear',141)}        Clear terminal`);
       break;
 
-    case 'list':
-      cmd_list();
-      break;
+    case 'list': cmd_list(); break;
+    case 'draw': cmd_draw(); break;
+    case 'show': cmd_show(arg); break;
+    case 'clear': term.clear(); break;
 
-    case 'draw':
-      cmd_draw();
-      break;
-
-    case 'show':
-      cmd_show(arg);
-      break;
-
-    case 'clear':
-      term.clear();
-      break;
-
-    case '':
-      // just Enter
-      break;
-
+    case '': break;
     default:
-      warn(`Unknown command: ${cmd}`);
-      println(`Try ${color('help',141)}.`);
+      warn(`Unknown command: ${cmd}`); println(`Try ${color('help',141)}.`);
   }
 }
 
-/* print list with arrow for active card */
-function printListWithArrow() {
-  CARDS.forEach((c, i) => {
-    const isActive = (i === currentIndex);
-    const marker = isActive ? color('→', 69) : ' ';
-    println(`${marker} ${String(i + 1).padStart(2,' ')}. ${c.name}`);
+function printListWithArrow(){
+  CARDS.forEach((c,i)=>{
+    const marker = (i===currentIndex) ? color('→',69) : ' ';
+    println(`${marker} ${String(i+1).padStart(2,' ')}. ${c.name}`);
   });
 }
 
-function cmd_list() {
-  if (!CARDS.length) { warn('Cards are not loaded yet.'); return; }
+function cmd_list(){
+  if(!CARDS.length){ warn('Cards are not loaded yet.'); return; }
   printListWithArrow();
   buildThumbnails();
 }
 
-function cmd_draw() {
-  if (!CARDS.length) { warn('Cards are not loaded yet.'); return; }
+function cmd_draw(){
+  if(!CARDS.length){ warn('Cards are not loaded yet.'); return; }
   let i;
-  if (CARDS.length === 1) i = 0;
-  else {
-    do { i = Math.floor(Math.random() * CARDS.length); } while (i === currentIndex);
-  }
+  if(CARDS.length===1) i=0;
+  else { do { i=Math.floor(Math.random()*CARDS.length); } while(i===currentIndex); }
   renderCard(CARDS[i], i);
-  println(`${color('Card:', 141)} ${CARDS[i].name}`);
-  println(` ${color('→', 69)} ${CARDS[i].textEn}`);
+  println(`${color('Card:',141)} ${CARDS[i].name}`);
+  println(` ${color('→',69)} ${CARDS[i].textEn}`);
   println('');
 }
 
-function findByArg(arg) {
-  if (!arg) return -1;
+function findByArg(arg){
+  if(!arg) return -1;
   const n = Number(arg);
-  if (Number.isInteger(n) && n >= 1 && n <= CARDS.length) return n - 1;
+  if(Number.isInteger(n) && n>=1 && n<=CARDS.length) return n-1;
   const needle = arg.toLowerCase();
-  let idx = CARDS.findIndex(c => c.name.toLowerCase() === needle);
-  if (idx >= 0) return idx;
-  idx = CARDS.findIndex(c => c.name.toLowerCase().includes(needle));
+  let idx = CARDS.findIndex(c=>c.name.toLowerCase()===needle);
+  if(idx>=0) return idx;
+  idx = CARDS.findIndex(c=>c.name.toLowerCase().includes(needle));
   return idx;
 }
 
-function cmd_show(arg) {
-  if (!CARDS.length) { warn('Cards are not loaded yet.'); return; }
+function cmd_show(arg){
+  if(!CARDS.length){ warn('Cards are not loaded yet.'); return; }
   const idx = findByArg(arg);
-  if (idx < 0) { warn(`Card not found: ${arg}`); return; }
+  if(idx<0){ warn(`Card not found: ${arg}`); return; }
   renderCard(CARDS[idx], idx);
-  println(`${color('Card:', 141)} ${CARDS[idx].name}`);
-  println(` ${color('→', 69)} ${CARDS[idx].textEn}`);
+  println(`${color('Card:',141)} ${CARDS[idx].name}`);
+  println(` ${color('→',69)} ${CARDS[idx].textEn}`);
   println('');
 }
 
-/* ====== Init ====== */
-(async function init() {
+/* ===== Init ===== */
+(async function init(){
   await loadCards();
   initTerminal();
 })();
