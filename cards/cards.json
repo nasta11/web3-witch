@@ -1,0 +1,23 @@
+[
+  { "name": "The Moonlight",  "textEn": "Insight is clarity.", "textRu": "Ты наблюдаешь в тени.", "filename": "the_moonlight.jpg" },
+  { "name": "The Connection", "textEn": "You’re never alone.", "textRu": "Сеть зовёт.", "filename": "the_connection.jpg" },
+  { "name": "The Gate",       "textEn": "Beyond lies truth.", "textRu": "Открывай. По ту сторону — истина.", "filename": "the_gate.jpg" },
+  { "name": "The Crown",      "textEn": "Lead with intention.", "textRu": "Ты лидер. Веди намерением.", "filename": "the_crown.jpg" },
+  { "name": "The Mirror",     "textEn": "Reflect and rise.", "textRu": "Смотри внутрь и поднимайся.", "filename": "the_mirror.jpg" },
+  { "name": "The Hacker",     "textEn": "Rules were meant to bend.", "textRu": "Взломай систему. Правила гибки.", "filename": "the_hacker.jpg" },
+  { "name": "The Flame",      "textEn": "Act. The flame asks no permission.", "textRu": "Действуй. Пламя не просит разрешения.", "filename": "the_flame.jpg" },
+  { "name": "Pure Code",      "textEn": "Pure code. No bugs, just purpose.", "textRu": "Ты чистый код. Никаких багов — только цель.", "filename": "pure_code.jpg" },
+  { "name": "The Pulse",      "textEn": "Sync with the signal.", "textRu": "Чувствуй ритм. Синхронизируйся с сигналом.", "filename": "the_pulse.jpg" },
+  { "name": "The Weaver",     "textEn": "Everything is connected.", "textRu": "Ты создаёшь узоры. Всё взаимосвязано.", "filename": "the_weaver.jpg" },
+  { "name": "The Virus",      "textEn": "Not all updates are good.", "textRu": "Будь осторожен(на). Не каждый апдейт благой.", "filename": "the_virus.jpg" },
+  { "name": "The Initiate",   "textEn": "Every journey starts small.", "textRu": "Ты на пути. Любое путешествие мало вначале.", "filename": "the_initiate.jpg" },
+  { "name": "The Machine",    "textEn": "The machine learns. So should you.", "textRu": "Машина учится. Учись и ты.", "filename": "the_machine.jpg" },
+  { "name": "The Fracture",   "textEn": "Cracks let the light in.", "textRu": "Ты разбит(а). Но трещины впускают свет.", "filename": "the_fracture.jpg" },
+  { "name": "The Child",      "textEn": "Wonder is power.", "textRu": "Смотри с любопытством. Удивление — сила.", "filename": "the_child.jpg" },
+  { "name": "The Empress",    "textEn": "Create with grace and chaos.", "textRu": "Твори. Милость и хаос — твои союзники.", "filename": "the_empress.jpg" },
+  { "name": "The Guardian",   "textEn": "Protect and evolve.", "textRu": "Ты хранишь знание. Защищай и эволюционируй.", "filename": "the_guardian.jpg" },
+  { "name": "The Void",       "textEn": "Stare into the void; it stares back.", "textRu": "Смотри в пустоту — она смотрит в ответ.", "filename": "the_void.jpg" },
+  { "name": "The Shadow",     "textEn": "Darkness walks with you.", "textRu": "Ты не один(а). Тьма шагает рядом.", "filename": "the_shadow.jpg" },
+  { "name": "The Oracle",     "textEn": "Trust your pattern recognition.", "textRu": "Ты знаешь. Доверься распознаванию узоров.", "filename": "the_oracle.jpg" },
+  { "name": "The Dreamer",    "textEn": "Code the impossible.", "textRu": "Мечтай. Закодируй невозможное.", "filename": "the_dreamer.jpg" }
+]
