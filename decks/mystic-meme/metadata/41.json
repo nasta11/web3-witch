@@ -1,19 +1,19 @@
 {
-  "name": "Ape (Meme)",
+  "name": "Validator (Coder)",
   "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
-  "image": "ipfs://<IMAGES_CID>/images/meme/ape.jpg",
+  "image": "ipfs://<IMAGES_CID>/images/coder/validator.jpg",
   "attributes": [
     {
       "trait_type": "Suit",
-      "value": "Meme"
+      "value": "Coder"
     },
     {
       "trait_type": "Card",
-      "value": "Ape"
+      "value": "Validator"
     },
     {
       "trait_type": "ID",
-      "value": 8
+      "value": 41
     }
   ]
 }

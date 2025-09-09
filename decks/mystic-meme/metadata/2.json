@@ -1,7 +1,7 @@
 {
-  "name": "The Bug (Meme)",
+  "name": ". Bug (Meme)",
   "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
-  "image": "https://witchweb3.com/images/meme/the-bug.jpg",
+  "image": "ipfs://<IMAGES_CID>/images/meme/.-bug.jpg",
   "attributes": [
     {
       "trait_type": "Suit",
@@ -9,7 +9,7 @@
     },
     {
       "trait_type": "Card",
-      "value": "The Bug"
+      "value": ". Bug"
     },
     {
       "trait_type": "ID",

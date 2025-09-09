@@ -1,15 +1,15 @@
 {
-  "name": "The Merge (Coder)",
+  "name": ". Merge (Mystic)",
   "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
-  "image": "https://witchweb3.com/images/coder/the-merge.jpg",
+  "image": "ipfs://<IMAGES_CID>/images/mystic/.-merge.jpg",
   "attributes": [
     {
       "trait_type": "Suit",
-      "value": "Coder"
+      "value": "Mystic"
     },
     {
       "trait_type": "Card",
-      "value": "The Merge"
+      "value": ". Merge"
     },
     {
       "trait_type": "ID",

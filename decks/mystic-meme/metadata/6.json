@@ -1,7 +1,7 @@
 {
-  "name": "The WAGMI (Meme)",
+  "name": ". Rug (Meme)",
   "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
-  "image": "https://witchweb3.com/images/meme/the-wagmi.jpg",
+  "image": "ipfs://<IMAGES_CID>/images/meme/.-rug.jpg",
   "attributes": [
     {
       "trait_type": "Suit",
@@ -9,7 +9,7 @@
     },
     {
       "trait_type": "Card",
-      "value": "The WAGMI"
+      "value": ". Rug"
     },
     {
       "trait_type": "ID",

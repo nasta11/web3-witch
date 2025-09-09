@@ -1,19 +1,19 @@
 {
-  "name": "Ape (Meme)",
+  "name": "Commit (Mystic)",
   "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
-  "image": "ipfs://<IMAGES_CID>/images/meme/ape.jpg",
+  "image": "ipfs://<IMAGES_CID>/images/mystic/commit.jpg",
   "attributes": [
     {
       "trait_type": "Suit",
-      "value": "Meme"
+      "value": "Mystic"
     },
     {
       "trait_type": "Card",
-      "value": "Ape"
+      "value": "Commit"
     },
     {
       "trait_type": "ID",
-      "value": 8
+      "value": 23
     }
   ]
 }

@@ -1,15 +1,15 @@
 {
-  "name": "The Seed (Coder)",
+  "name": ". Bridge (Mystic)",
   "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
-  "image": "https://witchweb3.com/images/coder/the-seed.jpg",
+  "image": "ipfs://<IMAGES_CID>/images/mystic/.-bridge.jpg",
   "attributes": [
     {
       "trait_type": "Suit",
-      "value": "Coder"
+      "value": "Mystic"
     },
     {
       "trait_type": "Card",
-      "value": "The Seed"
+      "value": ". Bridge"
     },
     {
       "trait_type": "ID",

@@ -1,7 +1,7 @@
 {
-  "name": "The Ape (Meme)",
+  "name": ". Ape (Meme)",
   "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
-  "image": "https://witchweb3.com/images/meme/the-ape.jpg",
+  "image": "ipfs://<IMAGES_CID>/images/meme/.-ape.jpg",
   "attributes": [
     {
       "trait_type": "Suit",
@@ -9,7 +9,7 @@
     },
     {
       "trait_type": "Card",
-      "value": "The Ape"
+      "value": ". Ape"
     },
     {
       "trait_type": "ID",

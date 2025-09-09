@@ -1,15 +1,15 @@
 {
-  "name": "The Miner (Mystic)",
+  "name": "Ngmi (Meme)",
   "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
-  "image": "https://witchweb3.com/images/mystic/the-miner.jpg",
+  "image": "ipfs://<IMAGES_CID>/images/meme/ngmi.jpg",
   "attributes": [
     {
       "trait_type": "Suit",
-      "value": "Mystic"
+      "value": "Meme"
     },
     {
       "trait_type": "Card",
-      "value": "The Miner"
+      "value": "Ngmi"
     },
     {
       "trait_type": "ID",

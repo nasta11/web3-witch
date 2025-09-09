@@ -1,7 +1,7 @@
 {
-  "name": "The GM (Meme)",
+  "name": ". Meme (Meme)",
   "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
-  "image": "https://witchweb3.com/images/meme/the-gm.jpg",
+  "image": "ipfs://<IMAGES_CID>/images/meme/.-meme.jpg",
   "attributes": [
     {
       "trait_type": "Suit",
@@ -9,7 +9,7 @@
     },
     {
       "trait_type": "Card",
-      "value": "The GM"
+      "value": ". Meme"
     },
     {
       "trait_type": "ID",
