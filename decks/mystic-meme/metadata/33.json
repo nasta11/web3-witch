@@ -1,6 +1,6 @@
 {
-  "name": ". Token (Coder)",
-  "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
+  "name": "Token (Coder)",
+  "description": "Web3 Mystic Meme Tarot — multi-suit deck.",
   "image": "ipfs://<IMAGES_CID>/images/coder/.-token.jpg",
   "attributes": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "trait_type": "Card",
-      "value": ". Token"
+      "value": "Token"
     },
     {
       "trait_type": "ID",

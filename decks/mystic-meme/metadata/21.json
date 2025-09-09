@@ -1,6 +1,6 @@
 {
-  "name": ". Seed Phrase (Mystic)",
-  "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
+  "name": "Seed Phrase (Mystic)",
+  "description": "Web3 Mystic Meme Tarot — multi-suit deck.",
   "image": "ipfs://<IMAGES_CID>/images/mystic/.-seed-phrase.jpg",
   "attributes": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "trait_type": "Card",
-      "value": ". Seed Phrase"
+      "value": "Seed Phrase"
     },
     {
       "trait_type": "ID",

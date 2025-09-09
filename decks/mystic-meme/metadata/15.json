@@ -1,6 +1,6 @@
 {
-  "name": ". Bridge (Mystic)",
-  "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
+  "name": "Bridge (Mystic)",
+  "description": "Web3 Mystic Meme Tarot — multi-suit deck.",
   "image": "ipfs://<IMAGES_CID>/images/mystic/.-bridge.jpg",
   "attributes": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "trait_type": "Card",
-      "value": ". Bridge"
+      "value": "Bridge"
     },
     {
       "trait_type": "ID",

@@ -11,49 +11,49 @@
     {
       "id": 1,
       "suit": "Meme",
-      "title": ". Ape",
+      "title": "Ape",
       "image": "images/meme/.-ape.jpg",
       "metadata": "metadata/1.json"
     },
     {
       "id": 2,
       "suit": "Meme",
-      "title": ". Bug",
+      "title": "Bug",
       "image": "images/meme/.-bug.jpg",
       "metadata": "metadata/2.json"
     },
     {
       "id": 3,
       "suit": "Meme",
-      "title": ". Gm",
+      "title": "Gm",
       "image": "images/meme/.-gm.jpg",
       "metadata": "metadata/3.json"
     },
     {
       "id": 4,
       "suit": "Meme",
-      "title": ". Meme",
+      "title": "Meme",
       "image": "images/meme/.-meme.jpg",
       "metadata": "metadata/4.json"
     },
     {
       "id": 5,
       "suit": "Meme",
-      "title": ". Ngmi",
+      "title": "Ngmi",
       "image": "images/meme/.-ngmi.jpg",
       "metadata": "metadata/5.json"
     },
     {
       "id": 6,
       "suit": "Meme",
-      "title": ". Rug",
+      "title": "Rug",
       "image": "images/meme/.-rug.jpg",
       "metadata": "metadata/6.json"
     },
     {
       "id": 7,
       "suit": "Meme",
-      "title": ". Wagmi",
+      "title": "Wagmi",
       "image": "images/meme/.-wagmi.jpg",
       "metadata": "metadata/7.json"
     },
@@ -109,49 +109,49 @@
     {
       "id": 15,
       "suit": "Mystic",
-      "title": ". Bridge",
+      "title": "Bridge",
       "image": "images/mystic/.-bridge.jpg",
       "metadata": "metadata/15.json"
     },
     {
       "id": 16,
       "suit": "Mystic",
-      "title": ". Commit",
+      "title": "Commit",
       "image": "images/mystic/.-commit.jpg",
       "metadata": "metadata/16.json"
     },
     {
       "id": 17,
       "suit": "Mystic",
-      "title": ". Contract",
+      "title": "Contract",
       "image": "images/mystic/.-contract.jpg",
       "metadata": "metadata/17.json"
     },
     {
       "id": 18,
       "suit": "Mystic",
-      "title": ". Hash",
+      "title": "Hash",
       "image": "images/mystic/.-hash.jpg",
       "metadata": "metadata/18.json"
     },
     {
       "id": 19,
       "suit": "Mystic",
-      "title": ". Merge",
+      "title": "Merge",
       "image": "images/mystic/.-merge.jpg",
       "metadata": "metadata/19.json"
     },
     {
       "id": 20,
       "suit": "Mystic",
-      "title": ". Seed",
+      "title": "Seed",
       "image": "images/mystic/.-seed.jpg",
       "metadata": "metadata/20.json"
     },
     {
       "id": 21,
       "suit": "Mystic",
-      "title": ". Seed Phrase",
+      "title": "Seed Phrase",
       "image": "images/mystic/.-seed-phrase.jpg",
       "metadata": "metadata/21.json"
     },
@@ -207,49 +207,49 @@
     {
       "id": 29,
       "suit": "Coder",
-      "title": ". Fork",
+      "title": "Fork",
       "image": "images/coder/.-fork.jpg",
       "metadata": "metadata/29.json"
     },
     {
       "id": 30,
       "suit": "Coder",
-      "title": ". Gas",
+      "title": "Gas",
       "image": "images/coder/.-gas.jpg",
       "metadata": "metadata/30.json"
     },
     {
       "id": 31,
       "suit": "Coder",
-      "title": ". Minerr",
+      "title": "Minerr",
       "image": "images/coder/.-minerr.jpg",
       "metadata": "metadata/31.json"
     },
     {
       "id": 32,
       "suit": "Coder",
-      "title": ". Oracle",
+      "title": "Oracle",
       "image": "images/coder/.-oracle.jpg",
       "metadata": "metadata/32.json"
     },
     {
       "id": 33,
       "suit": "Coder",
-      "title": ". Token",
+      "title": "Token",
       "image": "images/coder/.-token.jpg",
       "metadata": "metadata/33.json"
     },
     {
       "id": 34,
       "suit": "Coder",
-      "title": ". Validator",
+      "title": "Validator",
       "image": "images/coder/.-validator.jpg",
       "metadata": "metadata/34.json"
     },
     {
       "id": 35,
       "suit": "Coder",
-      "title": ". Wallet",
+      "title": "Wallet",
       "image": "images/coder/.-wallet.jpg",
       "metadata": "metadata/35.json"
     },
