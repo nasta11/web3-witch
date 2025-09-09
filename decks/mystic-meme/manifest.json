@@ -4,8 +4,8 @@
   "name": "Web3 Mystic Meme Tarot",
   "description": "21-card deck across Meme, Mystic, Coder.",
   "ipfs": {
-    "imagesCID": "bafy...",
-    "metadataCID": "bafy..."
+    "imagesCID": "bafy...из шага 1",
+    "metadataCID": "bafy...из шага 2"
   },
   "cards": [
     {
