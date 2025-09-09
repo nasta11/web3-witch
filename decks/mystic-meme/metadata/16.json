@@ -1,7 +1,7 @@
 {
   "name": "Gas (Coder)",
   "description": "Web3 Mystic Meme Tarot — multi-suit deck.",
-  "image": "ipfs://<IMAGES_CID>/images/coder/gas.jpg",
+  "image": "ipfs://bafy.../images/coder/gas.jpg",
   "attributes": [
     {
       "trait_type": "Suit",

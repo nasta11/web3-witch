@@ -1,7 +1,7 @@
 {
   "name": "Minerr (Coder)",
   "description": "Web3 Mystic Meme Tarot — multi-suit deck.",
-  "image": "ipfs://<IMAGES_CID>/images/coder/minerr.jpg",
+  "image": "ipfs://bafy.../images/coder/minerr.jpg",
   "attributes": [
     {
       "trait_type": "Suit",

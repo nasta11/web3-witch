@@ -1,7 +1,7 @@
 {
   "name": "Contract (Mystic)",
   "description": "Web3 Mystic Meme Tarot — multi-suit deck.",
-  "image": "ipfs://<IMAGES_CID>/images/mystic/contract.jpg",
+  "image": "ipfs://bafy.../images/mystic/contract.jpg",
   "attributes": [
     {
       "trait_type": "Suit",
