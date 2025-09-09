@@ -1,7 +1,7 @@
 {
   "name": "Ngmi (Meme)",
   "description": "Web3 Mystic Meme Tarot — multi-suit deck.",
-  "image": "ipfs://<IMAGES_CID>/images/meme/.-ngmi.jpg",
+  "image": "ipfs://<IMAGES_CID>/images/meme/ngmi.jpg",
   "attributes": [
     {
       "trait_type": "Suit",

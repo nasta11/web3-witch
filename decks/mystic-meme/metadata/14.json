@@ -1,15 +1,15 @@
 {
-  "name": "Wagmi (Meme)",
+  "name": "Seed Phrase (Mystic)",
   "description": "Web3 Mystic Meme Tarot — multi-suit deck.",
-  "image": "ipfs://<IMAGES_CID>/images/meme/wagmi.jpg",
+  "image": "ipfs://<IMAGES_CID>/images/mystic/seed-phrase.jpg",
   "attributes": [
     {
       "trait_type": "Suit",
-      "value": "Meme"
+      "value": "Mystic"
     },
     {
       "trait_type": "Card",
-      "value": "Wagmi"
+      "value": "Seed Phrase"
     },
     {
       "trait_type": "ID",

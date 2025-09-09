@@ -12,295 +12,148 @@
       "id": 1,
       "suit": "Meme",
       "title": "Ape",
-      "image": "images/meme/.-ape.jpg",
+      "image": "images/meme/ape.jpg",
       "metadata": "metadata/1.json"
     },
     {
       "id": 2,
       "suit": "Meme",
       "title": "Bug",
-      "image": "images/meme/.-bug.jpg",
+      "image": "images/meme/bug.jpg",
       "metadata": "metadata/2.json"
     },
     {
       "id": 3,
       "suit": "Meme",
       "title": "Gm",
-      "image": "images/meme/.-gm.jpg",
+      "image": "images/meme/gm.jpg",
       "metadata": "metadata/3.json"
     },
     {
       "id": 4,
       "suit": "Meme",
       "title": "Meme",
-      "image": "images/meme/.-meme.jpg",
+      "image": "images/meme/meme.jpg",
       "metadata": "metadata/4.json"
     },
     {
       "id": 5,
       "suit": "Meme",
       "title": "Ngmi",
-      "image": "images/meme/.-ngmi.jpg",
+      "image": "images/meme/ngmi.jpg",
       "metadata": "metadata/5.json"
     },
     {
       "id": 6,
       "suit": "Meme",
       "title": "Rug",
-      "image": "images/meme/.-rug.jpg",
+      "image": "images/meme/rug.jpg",
       "metadata": "metadata/6.json"
     },
     {
       "id": 7,
       "suit": "Meme",
       "title": "Wagmi",
-      "image": "images/meme/.-wagmi.jpg",
+      "image": "images/meme/wagmi.jpg",
       "metadata": "metadata/7.json"
     },
     {
       "id": 8,
-      "suit": "Meme",
-      "title": "Ape",
-      "image": "images/meme/ape.jpg",
+      "suit": "Mystic",
+      "title": "Bridge",
+      "image": "images/mystic/bridge.jpg",
       "metadata": "metadata/8.json"
     },
     {
       "id": 9,
-      "suit": "Meme",
-      "title": "Bug",
-      "image": "images/meme/bug.jpg",
+      "suit": "Mystic",
+      "title": "Commit",
+      "image": "images/mystic/commit.jpg",
       "metadata": "metadata/9.json"
     },
     {
       "id": 10,
-      "suit": "Meme",
-      "title": "Gm",
-      "image": "images/meme/gm.jpg",
+      "suit": "Mystic",
+      "title": "Contract",
+      "image": "images/mystic/contract.jpg",
       "metadata": "metadata/10.json"
     },
     {
       "id": 11,
-      "suit": "Meme",
-      "title": "Meme",
-      "image": "images/meme/meme.jpg",
+      "suit": "Mystic",
+      "title": "Hash",
+      "image": "images/mystic/hash.jpg",
       "metadata": "metadata/11.json"
     },
     {
       "id": 12,
-      "suit": "Meme",
-      "title": "Ngmi",
-      "image": "images/meme/ngmi.jpg",
+      "suit": "Mystic",
+      "title": "Merge",
+      "image": "images/mystic/merge.jpg",
       "metadata": "metadata/12.json"
     },
     {
       "id": 13,
-      "suit": "Meme",
-      "title": "Rug",
-      "image": "images/meme/rug.jpg",
+      "suit": "Mystic",
+      "title": "Seed",
+      "image": "images/mystic/seed.jpg",
       "metadata": "metadata/13.json"
     },
     {
       "id": 14,
-      "suit": "Meme",
-      "title": "Wagmi",
-      "image": "images/meme/wagmi.jpg",
+      "suit": "Mystic",
+      "title": "Seed Phrase",
+      "image": "images/mystic/seed-phrase.jpg",
       "metadata": "metadata/14.json"
     },
     {
       "id": 15,
-      "suit": "Mystic",
-      "title": "Bridge",
-      "image": "images/mystic/.-bridge.jpg",
+      "suit": "Coder",
+      "title": "Fork",
+      "image": "images/coder/fork.jpg",
       "metadata": "metadata/15.json"
     },
     {
       "id": 16,
-      "suit": "Mystic",
-      "title": "Commit",
-      "image": "images/mystic/.-commit.jpg",
+      "suit": "Coder",
+      "title": "Gas",
+      "image": "images/coder/gas.jpg",
       "metadata": "metadata/16.json"
     },
     {
       "id": 17,
-      "suit": "Mystic",
-      "title": "Contract",
-      "image": "images/mystic/.-contract.jpg",
+      "suit": "Coder",
+      "title": "Minerr",
+      "image": "images/coder/minerr.jpg",
       "metadata": "metadata/17.json"
     },
     {
       "id": 18,
-      "suit": "Mystic",
-      "title": "Hash",
-      "image": "images/mystic/.-hash.jpg",
+      "suit": "Coder",
+      "title": "Oracle",
+      "image": "images/coder/oracle.jpg",
       "metadata": "metadata/18.json"
     },
     {
       "id": 19,
-      "suit": "Mystic",
-      "title": "Merge",
-      "image": "images/mystic/.-merge.jpg",
+      "suit": "Coder",
+      "title": "Token",
+      "image": "images/coder/token.jpg",
       "metadata": "metadata/19.json"
     },
     {
       "id": 20,
-      "suit": "Mystic",
-      "title": "Seed",
-      "image": "images/mystic/.-seed.jpg",
+      "suit": "Coder",
+      "title": "Validator",
+      "image": "images/coder/validator.jpg",
       "metadata": "metadata/20.json"
     },
     {
       "id": 21,
-      "suit": "Mystic",
-      "title": "Seed Phrase",
-      "image": "images/mystic/.-seed-phrase.jpg",
-      "metadata": "metadata/21.json"
-    },
-    {
-      "id": 22,
-      "suit": "Mystic",
-      "title": "Bridge",
-      "image": "images/mystic/bridge.jpg",
-      "metadata": "metadata/22.json"
-    },
-    {
-      "id": 23,
-      "suit": "Mystic",
-      "title": "Commit",
-      "image": "images/mystic/commit.jpg",
-      "metadata": "metadata/23.json"
-    },
-    {
-      "id": 24,
-      "suit": "Mystic",
-      "title": "Contract",
-      "image": "images/mystic/contract.jpg",
-      "metadata": "metadata/24.json"
-    },
-    {
-      "id": 25,
-      "suit": "Mystic",
-      "title": "Hash",
-      "image": "images/mystic/hash.jpg",
-      "metadata": "metadata/25.json"
-    },
-    {
-      "id": 26,
-      "suit": "Mystic",
-      "title": "Merge",
-      "image": "images/mystic/merge.jpg",
-      "metadata": "metadata/26.json"
-    },
-    {
-      "id": 27,
-      "suit": "Mystic",
-      "title": "Seed",
-      "image": "images/mystic/seed.jpg",
-      "metadata": "metadata/27.json"
-    },
-    {
-      "id": 28,
-      "suit": "Mystic",
-      "title": "Seed Phrase",
-      "image": "images/mystic/seed-phrase.jpg",
-      "metadata": "metadata/28.json"
-    },
-    {
-      "id": 29,
-      "suit": "Coder",
-      "title": "Fork",
-      "image": "images/coder/.-fork.jpg",
-      "metadata": "metadata/29.json"
-    },
-    {
-      "id": 30,
-      "suit": "Coder",
-      "title": "Gas",
-      "image": "images/coder/.-gas.jpg",
-      "metadata": "metadata/30.json"
-    },
-    {
-      "id": 31,
-      "suit": "Coder",
-      "title": "Minerr",
-      "image": "images/coder/.-minerr.jpg",
-      "metadata": "metadata/31.json"
-    },
-    {
-      "id": 32,
-      "suit": "Coder",
-      "title": "Oracle",
-      "image": "images/coder/.-oracle.jpg",
-      "metadata": "metadata/32.json"
-    },
-    {
-      "id": 33,
-      "suit": "Coder",
-      "title": "Token",
-      "image": "images/coder/.-token.jpg",
-      "metadata": "metadata/33.json"
-    },
-    {
-      "id": 34,
-      "suit": "Coder",
-      "title": "Validator",
-      "image": "images/coder/.-validator.jpg",
-      "metadata": "metadata/34.json"
-    },
-    {
-      "id": 35,
-      "suit": "Coder",
-      "title": "Wallet",
-      "image": "images/coder/.-wallet.jpg",
-      "metadata": "metadata/35.json"
-    },
-    {
-      "id": 36,
-      "suit": "Coder",
-      "title": "Fork",
-      "image": "images/coder/fork.jpg",
-      "metadata": "metadata/36.json"
-    },
-    {
-      "id": 37,
-      "suit": "Coder",
-      "title": "Gas",
-      "image": "images/coder/gas.jpg",
-      "metadata": "metadata/37.json"
-    },
-    {
-      "id": 38,
-      "suit": "Coder",
-      "title": "Minerr",
-      "image": "images/coder/minerr.jpg",
-      "metadata": "metadata/38.json"
-    },
-    {
-      "id": 39,
-      "suit": "Coder",
-      "title": "Oracle",
-      "image": "images/coder/oracle.jpg",
-      "metadata": "metadata/39.json"
-    },
-    {
-      "id": 40,
-      "suit": "Coder",
-      "title": "Token",
-      "image": "images/coder/token.jpg",
-      "metadata": "metadata/40.json"
-    },
-    {
-      "id": 41,
-      "suit": "Coder",
-      "title": "Validator",
-      "image": "images/coder/validator.jpg",
-      "metadata": "metadata/41.json"
-    },
-    {
-      "id": 42,
       "suit": "Coder",
       "title": "Wallet",
       "image": "images/coder/wallet.jpg",
-      "metadata": "metadata/42.json"
+      "metadata": "metadata/21.json"
     }
   ]
 }

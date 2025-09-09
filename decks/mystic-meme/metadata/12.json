@@ -1,15 +1,15 @@
 {
-  "name": "Ngmi (Meme)",
+  "name": "Merge (Mystic)",
   "description": "Web3 Mystic Meme Tarot — multi-suit deck.",
-  "image": "ipfs://<IMAGES_CID>/images/meme/ngmi.jpg",
+  "image": "ipfs://<IMAGES_CID>/images/mystic/merge.jpg",
   "attributes": [
     {
       "trait_type": "Suit",
-      "value": "Meme"
+      "value": "Mystic"
     },
     {
       "trait_type": "Card",
-      "value": "Ngmi"
+      "value": "Merge"
     },
     {
       "trait_type": "ID",

@@ -1,15 +1,15 @@
 {
-  "name": "Bridge (Mystic)",
+  "name": "Fork (Coder)",
   "description": "Web3 Mystic Meme Tarot — multi-suit deck.",
-  "image": "ipfs://<IMAGES_CID>/images/mystic/.-bridge.jpg",
+  "image": "ipfs://<IMAGES_CID>/images/coder/fork.jpg",
   "attributes": [
     {
       "trait_type": "Suit",
-      "value": "Mystic"
+      "value": "Coder"
     },
     {
       "trait_type": "Card",
-      "value": "Bridge"
+      "value": "Fork"
     },
     {
       "trait_type": "ID",

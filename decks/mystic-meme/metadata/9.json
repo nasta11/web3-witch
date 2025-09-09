@@ -1,15 +1,15 @@
 {
-  "name": "Bug (Meme)",
+  "name": "Commit (Mystic)",
   "description": "Web3 Mystic Meme Tarot — multi-suit deck.",
-  "image": "ipfs://<IMAGES_CID>/images/meme/bug.jpg",
+  "image": "ipfs://<IMAGES_CID>/images/mystic/commit.jpg",
   "attributes": [
     {
       "trait_type": "Suit",
-      "value": "Meme"
+      "value": "Mystic"
     },
     {
       "trait_type": "Card",
-      "value": "Bug"
+      "value": "Commit"
     },
     {
       "trait_type": "ID",
