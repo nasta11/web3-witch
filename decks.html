@@ -4,79 +4,25 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Колоды — Web3 Witch</title>
-  <meta name="description" content="Галерея колод Web3 Witch: просматривай разные колоды, фильтруй по мастям и ищи карты."/>
   <style>
-    :root {
-      --bg: #0a0a10;
-      --panel: #121225;
-      --muted: #9aa0b3;
-      --card: #151530;
-      --stroke: #272750;
-      --glow: #7c4dff;
-      --glow-2: #45d1ff;
-      --text: #e7e9f3;
-      --radius: 16px;
-      color-scheme: dark;
-    }
-    * { box-sizing: border-box; }
-    body { margin:0; background: radial-gradient(1200px 600px at 80% -10%, #111139 0%, transparent 60%), var(--bg); color:var(--text); font: 15px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-    header.page { padding:24px; position:sticky; top:0; backdrop-filter:saturate(160%) blur(8px); background: linear-gradient(180deg, rgba(10,10,16,.9), rgba(10,10,16,.6) 60%, transparent); border-bottom: 1px solid rgba(124,77,255,.15);}
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px 40px; }
-    h1 { margin: 8px 0 0; font-size: 28px; letter-spacing: .3px; }
-    p.lead { margin: 4px 0 0; color: var(--muted); }
-    .back { display:none; margin-top: 16px; }
-    .back .btn { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--stroke); color:var(--text); background:linear-gradient(180deg,#19193a,#14142a); padding:8px 12px; border-radius:12px; text-decoration:none; cursor:pointer; }
-    main { max-width: 1100px; margin: 0 auto; padding: 12px 24px 60px; }
-    .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:18px; align-items: stretch; }
-    .skeleton-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:18px; height: 340px; background: linear-gradient(90deg, #14142b 25%, #101022 50%, #14142b 75%); background-size: 400% 100%; animation: shimmer 1.1s infinite; border-radius: var(--radius); }
-    @keyframes shimmer { 0%{background-position: 0 0} 100%{background-position: -135% 0} }
-    .deck-card, .card { background: linear-gradient(180deg, #121235, #0f0f25); border:1px solid var(--stroke); border-radius: var(--radius); overflow: hidden; box-shadow: 0 0 0 1px rgba(124,77,255,.05), 0 8px 30px rgba(0,0,0,.35); transition: transform .12s ease, box-shadow .12s ease; }
-    .deck-card:hover, .card:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(69,209,255,.12), 0 16px 40px rgba(0,0,0,.5); }
-    .imgwrap { height: 280px; background:#0c0c18; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-    .deck-card img, .card img { width:100%; height:100%; object-fit:cover; display:block; }
-    .deck-card header { display:flex; align-items:center; justify-content:space-between; padding:12px 12px 12px 14px; gap:10px; }
-    .deck-card h3 { margin:0; font-size:16px; letter-spacing:.2px; }
-    .btn { border:1px solid var(--stroke); background: linear-gradient(180deg, #202050, #171739); padding:8px 12px; border-radius: 12px; color:var(--text); text-decoration:none; cursor:pointer; }
-    .btn:hover { border-color:#3a3aa0; }
-    .toolbar { margin: 8px auto 18px; }
-    .toolbar-inner { display:grid; grid-template-columns: 1fr auto; gap:18px; align-items:end; }
-    .deck-title { margin:0 0 2px; font-size:24px; }
-    .deck-desc { margin:0; color:var(--muted); }
-    .searchbox { display:flex; align-items:center; gap:8px; }
-    .searchbox input { width: 260px; max-width: 60vw; background:#101026; color:var(--text); border:1px solid var(--stroke); padding:10px 12px; border-radius:12px; outline: none; }
-    .searchbox .count { min-width: 28px; text-align:center; font-weight:600; padding:6px 8px; border-radius:10px; background: linear-gradient(180deg, #26265f, #18183f); border:1px solid var(--stroke); }
-    .filters { margin-top: 10px; display:flex; flex-wrap: wrap; gap:8px; justify-content: flex-end; }
-    .chip { border:1px solid var(--stroke); background: linear-gradient(180deg, #1a1a3d, #141433); color:var(--text); padding:6px 10px; border-radius:12px; cursor:pointer; }
-    .chip.active { border-color: rgba(124,77,255,.7); box-shadow: inset 0 0 0 1px rgba(124,77,255,.25), 0 0 18px rgba(124,77,255,.25); }
-    .meta { padding:10px 12px 12px; }
-    .meta .title { font-weight:600; letter-spacing:.2px; }
-    .meta .suit { color:var(--muted); font-size: 12.5px; margin-top: 2px; }
-    .muted { color: var(--muted); }
-    .span-all { grid-column: 1 / -1; }
-    .toast { position:fixed; left:50%; bottom:20px; transform:translateX(-50%) translateY(20px); background:#1a1a33; color:#fff; border:1px solid #303070; padding:10px 14px; border-radius:12px; opacity:0; transition: .2s ease; box-shadow: 0 10px 40px rgba(0,0,0,.5); }
-    .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
-    @media (max-width: 720px) {
-      .toolbar-inner { grid-template-columns: 1fr; }
-      .searchbox input { width: 100%; }
-      .filters { justify-content: flex-start; }
-    }
+    :root { color-scheme: dark; }
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;padding:24px;background:#0b0b0f;color:#fff}
+    h1{margin:0 0 16px}
+    h2{margin:8px 0 8px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+    .deck-card,.card{background:#161622;border:1px solid #26263a;border-radius:16px;padding:12px}
+    .deck-card img,.card img{width:100%;height:280px;object-fit:cover;border-radius:12px;background:#0f0f14}
+    button{cursor:pointer;border:1px solid #464a7a;background:#1f2240;padding:8px 12px;border-radius:10px;color:#fff}
+    .meta{margin-top:8px}
+    #deck-gallery{margin-top:24px}
+    .back{margin:0 0 16px;display:none}
   </style>
 </head>
 <body>
-  <header class="page">
-    <div class="wrap">
-      <div class="back"><button id="backBtn" class="btn">← Все колоды</button></div>
-      <h1>Колоды</h1>
-      <p class="lead">Выбирай колоду, фильтруй по мастям, ищи карты по названию.</p>
-    </div>
-  </header>
-
-  <main>
-    <section id="toolbar" class="toolbar wrap"></section>
-    <section id="deck-picker" class="wrap"></section>
-    <section id="deck-gallery" class="wrap"></section>
-  </main>
-
+  <h1>Колоды</h1>
+  <div id="deck-picker" class="grid"></div>
+  <div class="back"><button id="backBtn">← Все колоды</button></div>
+  <div id="deck-gallery"></div>
   <script src="js/decks.js"></script>
 </body>
 </html>
