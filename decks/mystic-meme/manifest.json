@@ -8,6 +8,6 @@
     "metadataCID": "<METADATA_CID>"
   },
   "cards": [
-    // Заполни позже: { "id": 1, "suit": "Meme", "title": "The Fork", "image": "images/meme/fork.jpg", "metadata": "metadata/1.json" }
+    // Позже заполним: { "id": 1, "suit": "Meme", "title": "The Fork", "image": "images/meme/fork.jpg", "metadata": "metadata/1.json" }
   ]
 }
