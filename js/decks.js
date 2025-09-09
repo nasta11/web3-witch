@@ -1,29 +1,26 @@
-/* decks router + wallet + mint */
+/* Decks (EN): router ?deck=slug + Connect Wallet + per-card Mint */
 (async function () {
   const $  = (sel, root=document) => root.querySelector(sel);
   const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
-  /* -------- helpers -------- */
   async function fetchJSON(url) {
     const sep = url.includes("?") ? "&" : "?";
     const res = await fetch(url + sep + "v=" + Date.now(), { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
     return res.json();
   }
-  async function loadRegistry() { return fetchJSON("/decks/registry.json"); }
-  async function loadManifest(slug){ return fetchJSON(`/decks/${slug}/manifest.json`); }
+  async function loadRegistry()     { return fetchJSON("/decks/registry.json"); }
+  async function loadManifest(slug) { return fetchJSON(`/decks/${slug}/manifest.json`); }
+
   function el(html){ const t=document.createElement('template'); t.innerHTML=html.trim(); return t.content.firstElementChild; }
   function toast(msg){ const x=el(`<div class="toast">${msg}</div>`); document.body.appendChild(x); setTimeout(()=>x.classList.add('show')); setTimeout(()=>x.classList.remove('show'),3500); setTimeout(()=>x.remove(),4000); }
 
-  /* -------- tiny router based on ?deck=slug -------- */
-  function getDeckFromURL(){
-    const u = new URL(location.href);
-    return u.searchParams.get('deck') || '';
-  }
-  function pushURLDeck(slug){ const u=new URL(location.href); if(slug){u.searchParams.set('deck',slug);} else {u.searchParams.delete('deck');} history.pushState({deck:slug}, '', u); }
-  function replaceURLDeck(slug){ const u=new URL(location.href); if(slug){u.searchParams.set('deck',slug);} else {u.searchParams.delete('deck');} history.replaceState({deck:slug}, '', u); }
+  // Router
+  const getDeckFromURL = () => (new URL(location.href)).searchParams.get('deck') || '';
+  function pushURLDeck(slug){ const u=new URL(location.href); slug?u.searchParams.set('deck',slug):u.searchParams.delete('deck'); history.pushState({deck:slug},'',u); }
+  function replaceURLDeck(slug){ const u=new URL(location.href); slug?u.searchParams.set('deck',slug):u.searchParams.delete('deck'); history.replaceState({deck:slug},'',u); }
 
-  /* -------- screens -------- */
+  // Screens
   async function renderDeckPicker({replace=false}={}){
     const picker = $('#deck-picker'), gallery = $('#deck-gallery'), toolbar = $('#toolbar'), backWrap = $('.back');
     if (!replace) pushURLDeck('');
@@ -34,10 +31,10 @@
 
     let registry;
     try { registry = await loadRegistry(); }
-    catch(e){ picker.innerHTML=''; toast('Не удалось загрузить список колод'); return; }
+    catch(e){ picker.innerHTML=''; toast('Failed to load deck list'); return; }
 
     if (!Array.isArray(registry) || registry.length===0){
-      picker.innerHTML = '<p class="muted">Пока нет колод.</p>';
+      picker.innerHTML = '<p class="muted">No decks yet.</p>';
       return;
     }
 
@@ -47,7 +44,7 @@
       const card = el(`
         <article class="deck-card" data-slug="${d.slug}">
           <div class="imgwrap"><img loading="lazy" src="${d.preview}" alt="${d.name}"></div>
-          <header><h3>${d.name}</h3><a class="btn" href="javascript:void(0)">Открыть</a></header>
+          <header><h3>${d.name}</h3><a class="btn" href="javascript:void(0)">Open</a></header>
         </article>
       `);
       card.querySelector('.btn').addEventListener('click', () => openDeck(d.slug));
@@ -64,11 +61,12 @@
     gallery.innerHTML = '<div class="skeleton-grid"></div>';
     toolbar.innerHTML = '';
     backWrap.style.display = 'block';
+    backBtn.textContent = '← All decks';
     backBtn.onclick = () => renderDeckPicker();
 
     let manifest;
     try { manifest = await loadManifest(slug); }
-    catch(e){ gallery.innerHTML=''; toast('Не удалось загрузить манифест'); return; }
+    catch(e){ gallery.innerHTML=''; toast('Failed to load manifest'); return; }
 
     const suits = Array.from(new Set((manifest.cards||[]).map(c => c.suit))).filter(Boolean).sort();
 
@@ -80,11 +78,11 @@
         </div>
         <div class="right">
           <div class="searchbox">
-            <input id="q" type="search" placeholder="Поиск по названию…">
+            <input id="q" type="search" placeholder="Search by name…">
             <span class="count" id="count">${(manifest.cards||[]).length}</span>
           </div>
           <div class="filters" id="filters">
-            <button class="chip active" data-suit="all">Все</button>
+            <button class="chip active" data-suit="all">All</button>
             ${suits.map(s => `<button class="chip" data-suit="${s}">${s}</button>`).join('')}
           </div>
           <div style="margin-top:10px; display:flex; gap:8px; justify-content:flex-end;">
@@ -101,7 +99,7 @@
 
     function renderCards(list){
       grid.innerHTML='';
-      if (list.length===0){ grid.innerHTML = '<p class="muted span-all">Ничего не найдено.</p>'; return; }
+      if (list.length===0){ grid.innerHTML = '<p class="muted span-all">Nothing found.</p>'; return; }
       for (const c of list) {
         const title = (c.title||'').replace(/^[\.\s_-]+/,'');
         const card = el(`
@@ -143,9 +141,10 @@
       catch(e){ toast(e.message || 'Wallet error'); }
     });
 
+    // Mint handler
     grid.addEventListener('click', async (e) => {
       const btn = e.target.closest('.mint'); if (!btn) return;
-      if (!window.mintWithEthers){ toast('Mint модуль не загружен'); return; }
+      if (!window.mintWithEthers){ toast('Mint module not loaded'); return; }
       try {
         const id = Number(btn.dataset.id);
         btn.disabled = true; btn.textContent = 'Minting…';
@@ -161,7 +160,6 @@
     renderCards(state.cards);
   }
 
-  /* -------- init & history -------- */
   async function routeFromURL({replace=false}={}){
     const slug = getDeckFromURL();
     if (slug) { await openDeck(slug, {replace}); }

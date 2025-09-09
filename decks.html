@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Колоды — Web3 Witch</title>
-  <meta name="description" content="Галерея колод Web3 Witch: просматривай разные колоды, фильтруй по мастям и ищи карты."/>
+  <title>Decks — Web3 Witch</title>
+  <meta name="description" content="Browse decks, filter by suits, and search cards by name."/>
   <style>
     :root {
       --bg: #0a0a10;
@@ -55,6 +55,8 @@
     .span-all { grid-column: 1 / -1; }
     .toast { position:fixed; left:50%; bottom:20px; transform:translateX(-50%) translateY(20px); background:#1a1a33; color:#fff; border:1px solid #303070; padding:10px 14px; border-radius:12px; opacity:0; transition: .2s ease; box-shadow: 0 10px 40px rgba(0,0,0,.5); }
     .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+    .actions{display:flex;justify-content:flex-end;gap:8px;margin:8px 12px 12px}
+    .btn.mint{border:1px solid var(--stroke);background:linear-gradient(180deg,#2a2a5a,#1a1a3f)}
     @media (max-width: 720px) {
       .toolbar-inner { grid-template-columns: 1fr; }
       .searchbox input { width: 100%; }
@@ -65,9 +67,9 @@
 <body>
   <header class="page">
     <div class="wrap">
-      <div class="back"><button id="backBtn" class="btn">← Все колоды</button></div>
-      <h1>Колоды</h1>
-      <p class="lead">Выбирай колоду, фильтруй по мастям, ищи карты по названию.</p>
+      <div class="back"><button id="backBtn" class="btn">← All decks</button></div>
+      <h1>Decks</h1>
+      <p class="lead">Pick a deck, filter by suits, and search cards by name.</p>
     </div>
   </header>
 
@@ -77,18 +79,20 @@
     <section id="deck-gallery" class="wrap"></section>
   </main>
 
-  <script src="js/decks.js"></script>
+  <!-- scripts: ethers + mint + decks -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.1/dist/ethers.min.js"></script>
+  <script src="js/mint.js?v=1"></script>
+  <script src="js/decks.js?v=1"></script>
+
+  <!-- quick link back to home -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      if (document.getElementById('homeLinkBtn')) return;
+      var a=document.createElement('a');
+      a.id='homeLinkBtn'; a.href='/'; a.textContent='Home';
+      a.style.cssText='position:fixed;left:16px;bottom:16px;z-index:9999;padding:10px 14px;border-radius:12px;text-decoration:none;background:linear-gradient(180deg,#202050,#171739);border:1px solid #3a3aa0;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.4);font:14px/1 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif';
+      document.body.appendChild(a);
+    });
+  </script>
 </body>
 </html>
-<!-- quick link back to home -->
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  if (document.getElementById('homeLinkBtn')) return;
-  var a=document.createElement('a');
-  a.id='homeLinkBtn';
-  a.href='/';
-  a.textContent='Домой';
-  a.style.cssText='position:fixed;left:16px;bottom:16px;z-index:9999;padding:10px 14px;border-radius:12px;text-decoration:none;background:linear-gradient(180deg,#202050,#171739);border:1px solid #3a3aa0;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.4);font:14px/1 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif';
-  document.body.appendChild(a);
-});
-</script>
