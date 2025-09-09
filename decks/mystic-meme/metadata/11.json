@@ -1,0 +1,19 @@
+{
+  "name": "The Fork (Mystic)",
+  "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
+  "image": "https://witchweb3.com/images/mystic/the-fork.jpg",
+  "attributes": [
+    {
+      "trait_type": "Suit",
+      "value": "Mystic"
+    },
+    {
+      "trait_type": "Card",
+      "value": "The Fork"
+    },
+    {
+      "trait_type": "ID",
+      "value": 11
+    }
+  ]
+}

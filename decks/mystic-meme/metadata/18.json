@@ -1,0 +1,19 @@
+{
+  "name": "The Contract (Coder)",
+  "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
+  "image": "https://witchweb3.com/images/coder/the-contract.jpg",
+  "attributes": [
+    {
+      "trait_type": "Suit",
+      "value": "Coder"
+    },
+    {
+      "trait_type": "Card",
+      "value": "The Contract"
+    },
+    {
+      "trait_type": "ID",
+      "value": 18
+    }
+  ]
+}

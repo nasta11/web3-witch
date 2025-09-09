@@ -1,0 +1,19 @@
+{
+  "name": "The Meme (Meme)",
+  "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
+  "image": "https://witchweb3.com/images/meme/the-meme.jpg",
+  "attributes": [
+    {
+      "trait_type": "Suit",
+      "value": "Meme"
+    },
+    {
+      "trait_type": "Card",
+      "value": "The Meme"
+    },
+    {
+      "trait_type": "ID",
+      "value": 0
+    }
+  ]
+}

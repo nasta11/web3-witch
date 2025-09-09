@@ -1,0 +1,9 @@
+[
+  {
+    "id": 2,
+    "slug": "mystic-meme",
+    "name": "Web3 Mystic Meme Tarot",
+    "preview": "/decks/mystic-meme/preview.jpg",
+    "manifest": "/decks/mystic-meme/manifest.json"
+  }
+]

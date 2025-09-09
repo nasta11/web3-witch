@@ -1,0 +1,19 @@
+{
+  "name": "The Gas (Mystic)",
+  "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
+  "image": "https://witchweb3.com/images/mystic/the-gas.jpg",
+  "attributes": [
+    {
+      "trait_type": "Suit",
+      "value": "Mystic"
+    },
+    {
+      "trait_type": "Card",
+      "value": "The Gas"
+    },
+    {
+      "trait_type": "ID",
+      "value": 10
+    }
+  ]
+}

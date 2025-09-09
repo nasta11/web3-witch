@@ -1,0 +1,19 @@
+{
+  "name": "The Seed Phrase (Coder)",
+  "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
+  "image": "https://witchweb3.com/images/coder/the-seed-phrase.jpg",
+  "attributes": [
+    {
+      "trait_type": "Suit",
+      "value": "Coder"
+    },
+    {
+      "trait_type": "Card",
+      "value": "The Seed Phrase"
+    },
+    {
+      "trait_type": "ID",
+      "value": 20
+    }
+  ]
+}

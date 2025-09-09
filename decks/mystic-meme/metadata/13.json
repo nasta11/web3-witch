@@ -1,0 +1,19 @@
+{
+  "name": "The Token (Mystic)",
+  "description": "Web3 Mystic Meme Tarot — 21-card deck across Meme, Mystic, Coder.",
+  "image": "https://witchweb3.com/images/mystic/the-token.jpg",
+  "attributes": [
+    {
+      "trait_type": "Suit",
+      "value": "Mystic"
+    },
+    {
+      "trait_type": "Card",
+      "value": "The Token"
+    },
+    {
+      "trait_type": "ID",
+      "value": 13
+    }
+  ]
+}

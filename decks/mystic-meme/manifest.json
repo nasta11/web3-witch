@@ -1,0 +1,13 @@
+{
+  "deckId": 2,
+  "slug": "mystic-meme",
+  "name": "Web3 Mystic Meme Tarot",
+  "description": "21-card deck across Meme, Mystic, Coder.",
+  "ipfs": {
+    "imagesCID": "<IMAGES_CID>",
+    "metadataCID": "<METADATA_CID>"
+  },
+  "cards": [
+    // Заполни позже: { "id": 1, "suit": "Meme", "title": "The Fork", "image": "images/meme/fork.jpg", "metadata": "metadata/1.json" }
+  ]
+}
