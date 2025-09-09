@@ -87,3 +87,15 @@ document.addEventListener('DOMContentLoaded', function(){
   document.body.appendChild(a);
 });
 </script>
+<!-- quick link to /decks.html -->
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  if (document.getElementById('decksLinkBtn')) return;
+  var a=document.createElement('a');
+  a.id='decksLinkBtn';
+  a.href='/decks.html';
+  a.textContent='Колоды';
+  a.style.cssText='position:fixed;right:16px;bottom:16px;z-index:9999;padding:10px 14px;border-radius:12px;text-decoration:none;background:linear-gradient(180deg,#202050,#171739);border:1px solid #3a3aa0;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.4);font:14px/1 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif';
+  document.body.appendChild(a);
+});
+</script>
