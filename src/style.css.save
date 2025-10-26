@@ -1,0 +1,119 @@
+body {
+  background: radial-gradient(ellipse at top, #0b0b0b 60%, #000000);
+  color: #e0d4ff;
+  font-family: "Cinzel", serif;
+  text-align: center;
+  margin-top: 10%;
+}
+
+button {
+  background: #3c0068;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1rem;
+  box-shadow: 0 0 10px #6400b8;
+}
+
+button:hover {
+  background: #6400b8;
+  box-shadow: 0 0 20px #a066ff;
+}
+
+.fade {
+  margin-top: 20px;
+  font-size: 1.4rem;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  color: #e0d4ff;
+  text-shadow: 0 0 12px #9b5de5, 0 0 24px #c77dff;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: scale(1);
+}
+  background: radial-gradient(ellipse at top, #0b0b0b 60%, #000000);
+  color: #e0d4ff;
+  font-family: "Cinzel", serif;
+  text-align: center;
+  margin-top: 10%;
+}
+
+button {
+  background: #3c0068;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1rem;
+  box-shadow: 0 0 10px #6400b8;
+}
+
+button:hover {
+  background: #6400b8;
+  box-shadow: 0 0 20px #a066ff;
+}
+
+.fade {
+  margin-top: 20px;
+  font-size: 1.4rem;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  color: #e0d4ff;
+  text-shadow: 0 0 12px #9b5de5, 0 0 24px #c77dff;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: scale(1);
+}
+  background: radial-gradient(ellipse at top, #0b0b0b 60%, #000000);
+  color: #e0d4ff;
+  font-family: "Cinzel", serif;
+  text-align: center;
+  margin-top: 10%;
+}
+
+button {
+  background: #3c0068;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1rem;
+  box-shadow: 0 0 10px #6400b8;
+}
+
+button:hover {
+  background: #6400b8;
+  box-shadow: 0 0 20px #a066ff;
+}
+
+.fade {
+  margin-top: 20px;
+  font-size: 1.4rem;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  color: #e0d4ff;
+  text-shadow: 0 0 12px #9b5de5, 0 0 24px #c77dff;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: scale(1);
+}
+

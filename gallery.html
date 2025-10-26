@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🪄 Галерея арканов WitchWeb3</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/gallery.js" defer></script>
+  <style>
+    body {
+      background-color: #0c0b16;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 0 20px rgba(150, 0, 255, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(183, 97, 255, 0.6);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .card h3 {
+      margin-top: 10px;
+      font-size: 1.1rem;
+    }
+
+    .mint-btn {
+      background: linear-gradient(90deg, #a855f7, #9333ea);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    .mint-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(183, 97, 255, 0.6);
+    }
+
+    #status {
+      margin-top: 30px;
+      opacity: 0.8;
+      font-size: 1rem;
+    }
+
+    a.back {
+      display: inline-block;
+      margin-top: 30px;
+      color: #a855f7;
+      text-decoration: none;
+    }
+
+    a.back:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>🪄 Галерея арканов WitchWeb3</h1>
+
+  <div class="gallery" id="gallery"></div>
+
+  <p id="status">Подключите MetaMask, чтобы минтить карты.</p>
+  <a href="decks.html" class="back">← Назад в колоду</a>
+</body>
+</html>
+

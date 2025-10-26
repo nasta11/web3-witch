@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WitchWeb3 — AI Tarot of the Digital Witch</title>
+  <meta name="description" content="Интерактивная AI-колода ведьмы Web3. Вытяни карту судьбы и познай энергию кода и магии.">
+  <link rel="icon" href="cards/moon.png" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at center, #0c0014 20%, #000);
+      color: #e9dffb;
+      font-family: "Courier New", monospace;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #e3caff;
+      text-shadow: 0 0 10px #a020f0;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.5;
+      max-width: 500px;
+      margin: 10px auto;
+    }
+
+    button {
+      background: #a020f0;
+      border: none;
+      color: #fff;
+      padding: 12px 24px;
+      margin: 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: #c040ff;
+      transform: scale(1.05);
+    }
+
+    .tarot-card {
+      width: 180px;
+      height: 260px;
+      background: linear-gradient(135deg, #2b0b45, #7c33a3);
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(162, 0, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      margin: 20px auto;
+      transition: transform 1s, box-shadow 0.5s;
+      transform-style: preserve-3d;
+      perspective: 800px;
+      position: relative;
+      overflow: visible;
+    }
+
+    .tarot-card.flipped { transform: rotateY(180deg); }
+    .tarot-card.glow { box-shadow: 0 0 40px #ff00ff, 0 0 80px #c040ff; }
+
+    /* ✨ Магическая пыль ✨ */
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: radial-gradient(circle, #ffb6ff, transparent);
+      border-radius: 50%;
+      opacity: 0;
+      animation: sparkle 1.5s ease-out forwards;
+    }
+
+    @keyframes sparkle {
+      0% { transform: scale(0.5) translateY(0); opacity: 1; }
+      50% { transform: scale(1.2) translateY(-20px); opacity: 1; }
+      100% { transform: scale(0.2) translateY(-40px); opacity: 0; }
+    }
+
+    .lang-switch {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #a020f0;
+      color: white;
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 13px;
+      color: #b999e8;
+    }
+
+    a {
+      color: #d48aff;
+      text-decoration: none;
+      margin: 0 6px;
+    }
+
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+
+<body>
+  <div class="lang-switch" id="langSwitch">EN 🇬🇧</div>
+
+  <section class="tarot-section" id="content">
+    <h1>WitchWeb3 — AI-колода ведьмы Web3</h1>
+    <p>Вытяни карту и узнай, что ждёт твою цифровую душу 🔮</p>
+
+    <button id="connectWallet">Подключить MetaMask</button>
+    <div id="card" class="tarot-card">🃏</div>
+    <button id="drawCard">Вытянуть карту</button>
+    <p id="status"></p>
+    <p id="txLink"></p>
+  </section>
+
+  <footer>
+    <div>
+      <a href="https://t.me/NastaKasi" target="_blank">Telegram</a> •
+      <a href="https://github.com/nasta11/web3-mystic-meme-tarot" target="_blank">GitHub</a> •
+      <a href="https://www.instagram.com/Anastasia.vitae" target="_blank">Instagram</a>
+    </div>
+    <div>© WitchWeb3 2025 • contact@witchweb3.com</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.8.1/dist/ethers.umd.min.js"></script>
+  <script>
+    // 🌐 Переключатель языков
+    const langSwitch = document.getElementById("langSwitch");
+    const content = document.getElementById("content");
+    let lang = "ru";
+
+    const texts = {
+      ru: {
+        title: "WitchWeb3 — AI-колода ведьмы Web3",
+        desc: "Вытяни карту и узнай, что ждёт твою цифровую душу 🔮",
+        connect: "Подключить MetaMask",
+        draw: "Вытянуть карту"
+      },
+      en: {
+        title: "WitchWeb3 — The AI Tarot of the Digital Witch",
+        desc: "Draw your card and see what awaits your digital soul 🔮",
+        connect: "Connect MetaMask",
+        draw: "Draw a Card"
+      }
+    };
+
+    langSwitch.addEventListener("click", () => {
+      lang = lang === "ru" ? "en" : "ru";
+      const t = texts[lang];
+      document.querySelector("h1").innerText = t.title;
+      document.querySelector("p").innerText = t.desc;
+      document.getElementById("connectWallet").innerText = t.connect;
+      document.getElementById("drawCard").innerText = t.draw;
+      langSwitch.innerText = lang === "ru" ? "EN 🇬🇧" : "RU 🇷🇺";
+    });
+
+    // ✨ Магическая пыль
+    function createParticles(container) {
+      for (let i = 0; i < 12; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const angle = Math.random() * 2 * Math.PI;
+        const radius = 40 + Math.random() * 30;
+        p.style.left = 90 + Math.cos(angle) * radius + 'px';
+        p.style.top = 130 + Math.sin(angle) * radius + 'px';
+        p.style.animationDelay = (Math.random() * 0.6) + 's';
+        container.appendChild(p);
+        setTimeout(() => p.remove(), 1500);
+      }
+    }
+
+    // 🪄 Web3 логика
+    const CONTRACT_ADDRESS = "0xYOUR_CONTRACT_ADDRESS"; // вставь свой адрес
+    const ABI = [
+      "function mint(uint256 qty) payable",
+      "function price() view returns (uint256)"
+    ];
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    let signer;
+
+    const card = document.getElementById("card");
+    const connectBtn = document.getElementById("connectWallet");
+    const drawBtn = document.getElementById("drawCard");
+    const statusText = document.getElementById("status");
+    const txLink = document.getElementById("txLink");
+
+    connectBtn.addEventListener("click", async () => {
+      try {
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+        signer = await provider.getSigner();
+        const addr = await signer.getAddress();
+        connectBtn.innerText = `🔗 ${addr.slice(0, 6)}...${addr.slice(-4)}`;
+        connectBtn.disabled = true;
+        statusText.innerText = lang === "ru" ? "Готово! Можно вытягивать карту." : "Ready! You can draw a card.";
+      } catch (e) {
+        statusText.innerText = lang === "ru" ? "MetaMask не подключен." : "MetaMask not connected.";
+      }
+    });
+
+    async function drawCard() {
+      if (!signer) return alert(lang === "ru" ? "Подключи MetaMask сначала!" : "Please connect MetaMask first!");
+      try {
+        statusText.innerText = lang === "ru" ? "✨ Вытягиваем карту..." : "✨ Drawing your card...";
+        drawBtn.disabled = true;
+        const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
+        const price = await contract.price();
+        const tx = await contract.mint(1, { value: price });
+        const receipt = await tx.wait();
+        statusText.innerText = lang === "ru" ? "🔮 Карта вытянута!" : "🔮 Card drawn!";
+        txLink.innerHTML = `<a href=\"https://sepolia.etherscan.io/tx/${receipt.hash}\" target=\"_blank\">Etherscan</a>`;
+        animateCard();
+      } catch (e) {
+        console.error(e);
+        statusText.innerText = "Ошибка: " + e.message;
+      } finally {
+        drawBtn.disabled = false;
+      }
+    }
+
+    function animateCard() {
+      card.classList.add("flipped", "glow");
+      createParticles(card);
+      setTimeout(() => card.classList.remove("glow"), 2000);
+    }
+
+    drawBtn.addEventListener("click", drawCard);
+
+    // Свайп вверх
+    let touchStartY = 0;
+    document.addEventListener("touchstart", e => touchStartY = e.touches[0].clientY);
+    document.addEventListener("touchend", e => {
+      const endY = e.changedTouches[0].clientY;
+      if (touchStartY - endY > 50) drawCard();
+    });
+  </script>
+</body>
+</html>
+

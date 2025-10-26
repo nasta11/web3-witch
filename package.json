@@ -1,0 +1,15 @@
+{
+  "name": "witchweb3",
+  "version": "1.0.0",
+  "description": "WitchWeb3 clean dev server",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vite": "^6.4.0"
+  }
+}
+
