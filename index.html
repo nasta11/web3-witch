@@ -1,101 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Web3 Witch — Terminal</title>
-
-  <!-- xterm.css -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🜏 Портал ведьмы Web3</title>
+  <link rel="stylesheet" href="css/style.css">
   <style>
-    :root { --bg:#0b0014; --fg:#e8d7ff; --accent:#a020f0; }
-    * { box-sizing: border-box; }
-    html, body { margin:0; padding:0; height:100%; background:var(--bg); color:var(--fg);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-    .wrap { max-width:1100px; margin:0 auto; padding:24px; display:grid;
-      grid-template-columns:1fr 360px; gap:24px; }
-    header { grid-column:1/-1; display:flex; align-items:baseline; justify-content:space-between;
-      gap:16px; padding-bottom:8px; border-bottom:1px solid #2b1242; }
-    h1 { margin:0; font-size:24px; }
-    .hint { opacity:.8; font-size:14px; }
-    #terminal { width:100%; height:520px; border:1px solid #2b1242; border-radius:12px; overflow:hidden;
-      box-shadow:0 0 20px rgba(160,32,240,.25); }
+    body {
+      background-color: #0c0b16;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
 
-    .card { display:flex; flex-direction:column; align-items:center; gap:12px; position:sticky; top:24px;
-      background:#140323; border:1px solid #2b1242; border-radius:14px; padding:16px;
-      box-shadow:0 0 20px rgba(160,32,240,.25); min-height:520px; }
-    .card img { width:320px; max-width:100%; border:2px solid var(--accent); border-radius:12px;
-      box-shadow:0 0 20px var(--accent); }
-    .card h2 { margin:0; font-size:18px; text-align:center; }
-    .card p { margin:0; font-size:15px; text-align:center; line-height:1.45; }
-    .muted { opacity:.8; font-size:13px; }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
 
-    .thumbs { display:grid; grid-template-columns:repeat(auto-fill, minmax(72px,1fr)); gap:8px; margin-top:12px; }
-    .thumbs img { width:100%; height:100%; object-fit:cover; border:1px solid #2b1242; border-radius:8px;
-      box-shadow:0 0 10px rgba(160,32,240,.12); }
-    .blurred { filter:blur(6px); transition:filter .25s ease; }
-    .fade-in { animation:fadeIn .42s ease-out; }
-    @keyframes fadeIn { from {opacity:0; transform:translateY(6px) scale(.98);} to {opacity:1; transform:none;} }
+    p {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      margin-bottom: 30px;
+    }
 
-    /* Simple mode (fallback when xterm missing) */
-    .simple-controls { display:none; margin-top:12px; }
-    .simple-controls button { background:#a020f0; color:#fff; border:none; border-radius:10px;
-      padding:10px 14px; cursor:pointer; margin-right:8px; }
-    .simple-mode .simple-controls { display:block; }
+    .enter-btn {
+      background: linear-gradient(90deg, #a855f7, #9333ea);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 14px 30px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(148, 0, 255, 0.5);
+      text-decoration: none;
+    }
+
+    .enter-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(183, 97, 255, 0.7);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.9rem;
+      opacity: 0.5;
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>✨ Web3 Witch — Terminal ✨</h1>
-      <div class="hint">type <code>help</code> in terminal — or use buttons in fallback mode</div>
-    </header>
+  <h1>🜏 Портал ведьмы Web3</h1>
+  <p>Открой врата в цифровое подсознание</p>
 
-    <main>
-      <div id="terminal"></div>
-      <div class="simple-controls" id="simpleControls">
-        <button id="btnDraw">Draw</button>
-        <button id="btnList">List</button>
-      </div>
-    </main>
+  <a href="decks.html" class="enter-btn">Войти в мир арканов</a>
 
-    <aside>
-      <div class="card" id="cardContainer">
-        <img id="cardImage" src="" alt="Card image" />
-        <h2 id="cardName" class="muted">No card drawn yet</h2>
-        <p id="cardText" class="muted">Use <b>draw</b> in the terminal to pull a card.</p>
-      </div>
-      <div id="thumbs" class="thumbs" aria-label="All cards (blurred)"></div>
-    </aside>
-  </div>
+  <footer>© WitchWeb3 Portal</footer>
+  <script src="./app.js"></script>
 
-  <!-- xterm.js: статично и до app.js -->
-  <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js"></script>
-  <!-- app.js с версией (анти-кэш) -->
-  <script src="/app.js?v=8" defer></script>
 </body>
 </html>
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  if (document.getElementById('decksLinkBtn')) return;
-  var a=document.createElement('a');
-  a.id='decksLinkBtn';
-  a.href='/decks.html';
-  a.textContent='Decks';
-  a.style.cssText='position:fixed;right:16px;bottom:16px;z-index:9999;padding:10px 14px;border-radius:12px;text-decoration:none;background:linear-gradient(180deg,#202050,#171739);border:1px solid #3a3aa0;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.4);font:14px/1 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif';
-  document.body.appendChild(a);
-});
-</script>
-<!-- quick link to /decks.html -->
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  if (document.getElementById('decksLinkBtn')) return;
-  var a=document.createElement('a');
-  a.id='decksLinkBtn';
-  a.href='/decks.html';
-  a.textContent='Decks';
-  a.style.cssText='position:fixed;right:16px;bottom:16px;z-index:9999;padding:10px 14px;border-radius:12px;text-decoration:none;background:linear-gradient(180deg,#202050,#171739);border:1px solid #3a3aa0;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.4);font:14px/1 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif';
-  document.body.appendChild(a);
-});
-</script>
+
